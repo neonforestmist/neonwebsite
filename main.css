@@ -4,7 +4,7 @@ body {
 }
 body, html {
     font-size: 95.5%;
-    background: linear-gradient(324deg, rgba(14,40,111,1) 0%, rgba(0,0,0,1) 80%, rgba(0,0,0,1) 100%);
+    background: black;
 }
 h1 {
   background: -webkit-linear-gradient(#b1f3f9, #d1ffe272);
