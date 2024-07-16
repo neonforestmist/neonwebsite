@@ -1,6 +1,13 @@
 body {
-  color: #28866d
+  color: #b1f3f9c3
+  
 }
 body, html {
     font-size: 95.5%;
+    background: linear-gradient(324deg, rgba(14,40,111,1) 0%, rgba(0,0,0,1) 80%, rgba(0,0,0,1) 100%);
+}
+h1 {
+  background: -webkit-linear-gradient(#b1f3f9, #d1ffe272);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
