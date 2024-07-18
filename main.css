@@ -11,3 +11,8 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* custom cursor! */
+html {
+    cursor: url('https://github.com/neonforestmist/neonwebsite/raw/main/cursor.cur'), default;
+}
