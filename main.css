@@ -1,15 +1,33 @@
 body {
-  color: #b1f3f9c3
+  color: #B6FAD3
   
 }
 body, html {
-    font-size: 95.5%;
+    font-size: 105.5%;
     background: black;
+    background: rgb(2,0,36);
+    background: linear-gradient(132deg, rgba(2,0,36,1) 0%, rgba(7,68,73,1) 69%, rgba(0,0,0,1) 100%);
+
 }
+
 h1 {
-  background: -webkit-linear-gradient(#b1f3f9, #d1ffe272);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+background: #7bd7af;
+background: linear-gradient(to right, #7bd7af 0%, #6393C1 42%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+h2 {
+background: #B6FAD3;
+background: linear-gradient(to right, #B6FAD3 0%, #6EB0C3 42%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+a{
+background: #56cfff;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 /* custom cursor! */
