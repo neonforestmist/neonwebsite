@@ -16,7 +16,7 @@ h1 {
     background: linear-gradient(to right, #7bd7af 0%, #6393C1 42%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 2.5em; /* Adjust as needed */
+    font-size: 2.5em; 
     margin: 20px 0;
 }
 
@@ -24,7 +24,7 @@ h2 {
     background: linear-gradient(to right, #B6FAD3 0%, #6EB0C3 42%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 2em; /* Adjust as needed */
+    font-size: 2em; 
     margin: 20px 0;
 }
 
@@ -32,11 +32,11 @@ a {
     background: #56cfff;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 1.2em; /* Adjust as needed */
+    font-size: 1.2em; 
 }
 
 p {
-    font-size: 1.2em; /* Adjust as needed */
+    font-size: 1.2em; 
     line-height: 1.6;
     margin: 15px 0;
 }
