@@ -1,0 +1,5 @@
+/* Theme 2 */
+body.theme2 {
+    background-color: #222222;
+    color: #ffffff;
+}
