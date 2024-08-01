@@ -3,14 +3,18 @@ body {
 }
 
 body, html {
-    font-size: 115.5%;
+    font-size: 100%;
     background: linear-gradient(132deg, rgba(2,0,36,1) 0%, rgba(7,68,73,1) 69%, rgba(0,0,0,1) 100%);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
+    overflow: auto; /* i like scrolling */
+}
+
+h1, h2, p, a {
+    padding-left: 18px;
 }
 
 h1 {
