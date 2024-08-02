@@ -1,17 +1,10 @@
 body {
-    font-size: 100%;
-    color: #B6FAD3;
-    background: linear-gradient(132deg, rgba(2,0,36,1) 0%, rgba(7,68,73,1) 69%, rgba(0,0,0,1) 100%);
-    background-size: cover;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: auto; /* i like scrolling */
+  color: #B6FAD3;
 }
 
-html {
+body, html {
     font-size: 100%;
+    background: linear-gradient(132deg, rgba(2,0,36,1) 0%, rgba(7,68,73,1) 69%, rgba(0,0,0,1) 100%);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
@@ -62,4 +55,28 @@ html {
 /* this does something */
 html, body {
     height: 100%;
+}
+
+/* default Theme (Theme 1) */
+[data-theme="theme1"] {
+    --background-color: linear-gradient(132deg, rgba(2,0,36,1) 0%, rgba(7,68,73,1) 69%, rgba(0,0,0,1) 100%);
+    --text-color: #B6FAD3;
+}
+
+/* Theme 2 */
+[data-theme="theme2"] {
+    --background-color: linear-gradient(132deg, rgba(0,36,2,1) 0%, rgba(73,68,7,1) 69%, rgba(36,0,0,1) 100%);
+    --text-color: #FFD700;
+}
+
+/* Theme 3 */
+[data-theme="theme3"] {
+    --background-color: linear-gradient(132deg, rgba(36,2,0,1) 0%, rgba(73,7,68,1) 69%, rgba(36,0,36,1) 100%);
+    --text-color: #FF69B4;
+}
+
+/* Applying the theme variables */
+body, html {
+    background: var(--background-color);
+    color: var(--text-color);
 }
