@@ -1,5 +1,4 @@
-/* Theme 2 */
-body.theme2 {
-    background-color: #222222;
+body {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
     color: #ffffff;
 }
