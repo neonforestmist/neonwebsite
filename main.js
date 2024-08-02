@@ -1,5 +1,5 @@
 function updatemenu() {
-    if (document.getElementById('responsive-menu').checked) {
+    if (document.getElementById('responsive-menu').checked == true) {
         document.getElementById('menu').style.borderBottomRightRadius = '0';
         document.getElementById('menu').style.borderBottomLeftRadius = '0';
     } else {
@@ -7,11 +7,15 @@ function updatemenu() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const themes = document.querySelectorAll('input[name="theme"]');
-    themes.forEach((theme) => {
-        theme.addEventListener('change', function() {
-            document.documentElement.setAttribute('data-theme', this.value);
-        });
-    });
-});
+function setTheme(themeName) {
+    var themeLink = document.getElementById('theme-link');
+    themeLink.href = themeName + ".css";
+    localStorage.setItem('theme', themeName);
+}
+
+window.onload = function() {
+    var theme = localStorage.getItem('theme');
+    if (theme) {
+        setTheme(theme);
+    }
+};
