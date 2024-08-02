@@ -1,5 +1,5 @@
 body {
-  color: #B6FAD3;
+    color: #B6FAD3;
 }
 
 body, html {
@@ -10,7 +10,7 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: auto;
+    overflow: auto; /* i like scrolling */
 }
 
 h1, h2, p, a {
@@ -46,26 +46,13 @@ p {
     margin: 15px 0;
 }
 
-/* custom cursor */
+/* custom cursor ! */
 html {
     cursor: url('https://github.com/neonforestmist/neonwebsite/raw/main/cursor.cur'), default;
     height: 100%;
 }
 
-body.theme1, html.theme1 {
-    background: linear-gradient(132deg, rgba(2,0,36,1) 0%, rgba(7,68,73,1) 69%, rgba(0,0,0,1) 100%);
-    background-size: cover;
-    background-attachment: fixed;
-}
-
-body.theme2, html.theme2 {
-    background: linear-gradient(132deg, rgba(0,36,36,1) 0%, rgba(73,68,7,1) 69%, rgba(0,0,36,1) 100%);
-    background-size: cover;
-    background-attachment: fixed;
-}
-
-body.theme3, html.theme3 {
-    background: linear-gradient(132deg, rgba(36,0,2,1) 0%, rgba(73,7,68,1) 69%, rgba(36,0,0,1) 100%);
-    background-size: cover;
-    background-attachment: fixed;
+/* this does something */
+html, body {
+    height: 100%;
 }
