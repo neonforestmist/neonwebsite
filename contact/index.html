@@ -3,142 +3,103 @@
 <head>
     <link rel="stylesheet" href="../main.css">
     <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/neonforestmist/neonwebsite/main/icon.png">
-    <link rel="stylesheet" href="../theme1.css">
-    <link rel="stylesheet" href="../theme2.css">
-    <link rel="stylesheet" href="../theme3.css">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Home</title>
+    <title>Contact Us</title>
     <style>
+        #menu {
+            background: #000000;
+            height: 45px;
+            padding-left: 18px;
+            border-radius: 10px;
+        }
+        #menu ul, #menu li {
+            margin: 0 auto;
+            padding: 0;
+            list-style: none
+        }
+        #menu ul {
+            width: 100%;
+            text-align: left;
+        }
+        #menu li {
+            display: inline-block;
+            position: relative;
+        }
+        #menu a {
+            display: block;
+            line-height: 45px;
+            padding: 0 14px;
+            text-decoration: none;
+            color: #FFFFFF;
+            font-size: 16px;
+        }
+        #menu li a:hover {
+            color: #0099CC;
+            background: #F2F2F2;
+        }
+        #menu input {
+            display: none;
+            margin: 0;
+            padding: 0;
+            height: 45px;
+            width: 100%;
+            opacity: 0;
+            cursor: pointer
+        }
+        #menu label {
+            display: none;
+            line-height: 45px;
+            text-align: center;
+            position: absolute;
+            left: 35px
+        }
+        #menu label:before {
+            font-size: 1.6em;
+            color: #FFFFFF;
+            content: "\2261"; 
+            margin-left: 20px;
+        }
+        @media screen and (max-width: 800px) {
             #menu {
-                background: #000000;
-                height: 45px;
-                padding-left: 18px;
-                border-radius: 10px;
-            }
-            #menu ul, #menu li {
-                margin: 0 auto;
-                padding: 0;
-                list-style: none
+                position: relative;
             }
             #menu ul {
-                width: 100%;
+                background: #444444;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                left: 0;
+                z-index: 3;
+                height: auto;
+                display: none;
                 text-align: left;
             }
             #menu li {
-                display: inline-block;
-                position: relative;
-            }
-            #menu a {
                 display: block;
-                line-height: 45px;
-                padding: 0 14px;
-                text-decoration: none;
-                color: #FFFFFF;
-                font-size: 16px;
+                float: none;
+                width: auto;
             }
-            #menu a.dropdown-arrow:after {
-                content: "\25BE";
-                margin-left: 5px;
-            }
-            #menu li a:hover {
-                color: #0099CC;
-                background: #F2F2F2;
-            }
-            #menu input {
-                display: none;
-                margin: 0;
-                padding: 0;
-                height: 45px;
-                width: 100%;
-                opacity: 0;
-                cursor: pointer
-            }
-            #menu label {
-                display: none;
-                line-height: 45px;
-                text-align: center;
+            #menu input, #menu label {
                 position: absolute;
-                left: 35px
-            }
-            #menu label:before {
-                font-size: 1.6em;
-                color: #FFFFFF;
-                content: "\2261"; 
-                margin-left: 20px;
-            }
-            #menu ul.sub-menus {
-                height: auto;
-                overflow: hidden;
-                width: 170px;
-                background: #444444;
-                position: absolute;
-                z-index: 99;
-                display: none;
-            }
-            #menu ul.sub-menus li {
-                display: block;
-                text-align: left;
-                width: 100%;
-            }
-            #menu ul.sub-menus a {
-                color: #FFFFFF;
-                font-size: 16px;
-            }
-            #menu li:hover ul.sub-menus {
+                top: 0;
+                left: 0;
                 display: block
             }
-            #menu ul.sub-menus a:hover {
-                background: #F2F2F2;
-                color: #444444;
+            #menu input {
+                z-index: 4
             }
-            @media screen and (max-width: 800px) {
-                #menu {
-                    position: relative;
-                }
-                #menu ul {
-                    background: #444444;
-                    position: absolute;
-                    top: 100%;
-                    right: 0;
-                    left: 0;
-                    z-index: 3;
-                    height: auto;
-                    display: none;
-                    text-align: left;
-                }
-                #menu ul.sub-menus {
-                    width: 100%;
-                    position: static;
-                }
-                #menu ul.sub-menus a {
-                    padding-left: 30px;
-                }
-                #menu li {
-                    display: block;
-                    float: none;
-                    width: auto;
-                }
-                #menu input, #menu label {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    display: block
-                }
-                #menu input {
-                    z-index: 4
-                }
-                #menu input:checked + label {
-                    color: #FFFFFF
-                }
-                #menu input:checked + label:before {
-                    content: "\00d7"
-                }
-                #menu input:checked ~ ul {
-                    display: block
-                }
+            #menu input:checked + label {
+                color: #FFFFFF
             }
+            #menu input:checked + label:before {
+                content: "\00d7"
+            }
+            #menu input:checked ~ ul {
+                display: block
+            }
+        }
     </style>
 </head>
 <body>
@@ -153,18 +114,20 @@
                 </ul>
             </li>
             <li><a href='../about.html'>About</a></li>
-            <li><a class='dropdown-arrow' href='#'>Themes</a>
-                <ul class='sub-menus'>
-                    <li><input type="radio" name="theme" id="theme1" value="theme1" checked><label for="theme1">Theme 1</label></li>
-                    <li><input type="radio" name="theme" id="theme2" value="theme2"><label for="theme2">Theme 2</label></li>
-                    <li><input type="radio" name="theme" id="theme3" value="theme3"><label for="theme3">Theme 3</label></li>
-                </ul>
-            </li>
             <li><a href='index.html'>Contact Us</a></li>
         </ul>
     </nav>
     <h1>Contact Us</h1>
-    <p>If you have any questions, feel free to reach out to us.</p>
+    <p>Fill in the form below to send us a message:</p>
+    <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Send">
+    </form>
     <script src="../main.js"></script>
 </body>
 </html>
