@@ -1,5 +1,4 @@
-/* Theme 3 */
-body.theme3 {
-    background-color: #f0f0f0;
-    color: #333333;
+body {
+    background: linear-gradient(to right, #11998e, #38ef7d);
+    color: #ffffff;
 }
