@@ -8,14 +8,24 @@ function updatemenu() {
 }
 
 function setTheme(themeName) {
-    var themeLink = document.getElementById('theme-link');
-    themeLink.href = themeName + ".css";
+    // Remove the existing theme class
+    document.body.classList.remove('theme1', 'theme2', 'theme3');
+    // Add the new theme class
+    document.body.classList.add(themeName);
+    // Save the selected theme to localStorage
     localStorage.setItem('theme', themeName);
+    // Update the checkboxes
+    updateThemeCheckboxes(themeName);
 }
 
+function updateThemeCheckboxes(themeName) {
+    document.getElementById('theme1').checked = themeName === 'theme1';
+    document.getElementById('theme2').checked = themeName === 'theme2';
+    document.getElementById('theme3').checked = themeName === 'theme3';
+}
+
+// On page load, apply the saved theme
 window.onload = function() {
-    var theme = localStorage.getItem('theme');
-    if (theme) {
-        setTheme(theme);
-    }
+    const savedTheme = localStorage.getItem('theme') || 'theme1';
+    setTheme(savedTheme);
 };
