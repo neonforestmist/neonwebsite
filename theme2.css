@@ -1,4 +1,5 @@
-body {
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    color: #ffffff;
+body, html {
+    background: linear-gradient(132deg, rgba(0,36,36,1) 0%, rgba(73,68,7,1) 69%, rgba(0,0,36,1) 100%);
+    background-size: cover;
+    background-attachment: fixed;
 }
