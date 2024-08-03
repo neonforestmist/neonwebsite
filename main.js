@@ -29,7 +29,7 @@ window.onload = function() {
     const savedTheme = localStorage.getItem('theme') || 'theme1';
     setTheme(savedTheme);
 };
-
+// cursor effect magic
 let start = new Date().getTime();
 
 const originPosition = { x: 0, y: 0 };
