@@ -36,7 +36,7 @@ h2 {
 a {
     background: #56cfff;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: #74bbd2;
     font-size: 1.2em; 
 }
 
