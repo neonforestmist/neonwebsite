@@ -58,7 +58,7 @@ html, body {
 }
 /* cursor glow effect */
 :root {
-  --glow-rgb: 239 42 201;
+  --glow-rgb: 152, 250, 203;
 }
 
 .glow-point {
