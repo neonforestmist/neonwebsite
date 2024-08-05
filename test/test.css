@@ -12,7 +12,10 @@
    position: relative;
    font-size: 47px;
    font-weight: bold;
-   color: #abe3ff;
+  /* color: #abe3ff; */
+   background: linear-gradient(to right, #B6FAD3 0%, #6EB0C3 42%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
    letter-spacing: 3px;
    animation: shift 4s ease-in-out infinite alternate;
    transform: skewX(0deg);
