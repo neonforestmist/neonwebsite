@@ -104,6 +104,21 @@
 	#menu input:checked + label:before {content:"\00d7"}
 	#menu input:checked ~ ul {display:block}
 }
+	#debugInput {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            display: none;
+        }
+        #tapArea {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent for demonstration */
+        }
+
     </style>
 </head>
 <body>
@@ -140,23 +155,44 @@
     <script>
         (function() {
             const debugSequence = "debug";
-            let inputSequence = "";
+            const debugInput = document.getElementById('debugInput');
+            const tapArea = document.getElementById('tapArea');
             const stylesheetLink = document.getElementById('mainStylesheet');
 
+            // Listen for key sequences for desktop users
+            let inputSequence = "";
             document.addEventListener('keydown', function(event) {
                 inputSequence += event.key;
                 if (inputSequence.length > debugSequence.length) {
                     inputSequence = inputSequence.slice(-debugSequence.length);
                 }
                 if (inputSequence === debugSequence) {
-                    // Toggle the CSS file
-                    if (stylesheetLink.getAttribute('href') === '../main.css') {
-                        stylesheetLink.setAttribute('href', 'debug.css');
-                    } else {
-                        stylesheetLink.setAttribute('href', '../main.css');
-                    }
+                    toggleDebugMode();
                 }
             });
+
+            // Listen for taps on the tap area for mobile users
+            tapArea.addEventListener('click', function() {
+                debugInput.style.display = 'block';
+                debugInput.focus();
+            });
+
+            // Listen for input in the debug input field
+            debugInput.addEventListener('input', function() {
+                if (debugInput.value === debugSequence) {
+                    toggleDebugMode();
+                    debugInput.value = '';
+                    debugInput.style.display = 'none';
+                }
+            });
+
+            function toggleDebugMode() {
+                if (stylesheetLink.getAttribute('href') === '../main.css') {
+                    stylesheetLink.setAttribute('href', 'debug.css');
+                } else {
+                    stylesheetLink.setAttribute('href', '../main.css');
+                }
+            }
         })();
     </script>
 </body>
