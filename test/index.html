@@ -104,11 +104,12 @@
 	#menu input:checked + label:before {content:"\00d7"}
 	#menu input:checked ~ ul {display:block}
 }
-	#debugInput {
+        #commandInput {
             position: fixed;
             top: 10px;
             left: 10px;
             display: none;
+            z-index: 1000;
         }
         #tapArea {
             position: fixed;
@@ -117,6 +118,7 @@
             width: 50px;
             height: 50px;
             background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent for demonstration */
+            z-index: 1000;
         }
 
     </style>
@@ -141,7 +143,7 @@
         <div class="glitch-wrapper">
             <div class="glitch" data-text="What are you looking at? There’s nothing to see here…">What are you looking at? There’s nothing to see here…</div>
         </div>
-    <input type="text" id="debugInput" placeholder="Type 'debug'">
+    <input type="text" id="debugInput" placeholder="Type something">
     <div id="tapArea"></div>
     <script src="../main.js"></script>
     <style media="all" id="fa-main">
@@ -156,45 +158,51 @@
     </style>
     <script>
         (function() {
-            const debugSequence = "debug";
-            const debugInput = document.getElementById('debugInput');
+            const commands = {
+                "debug": function() {
+                    const stylesheetLink = document.getElementById('mainStylesheet');
+                    if (stylesheetLink.getAttribute('href') === '../main.css') {
+                        stylesheetLink.setAttribute('href', 'debug.css');
+                    } else {
+                        stylesheetLink.setAttribute('href', '../main.css');
+                    }
+                },
+                // Add more commands here
+                "easteregg": function() {
+                    alert("Easter Egg Found!");
+                }
+            };
+
+            const commandInput = document.getElementById('commandInput');
             const tapArea = document.getElementById('tapArea');
-            const stylesheetLink = document.getElementById('mainStylesheet');
 
             // Listen for key sequences for desktop users
             let inputSequence = "";
             document.addEventListener('keydown', function(event) {
                 inputSequence += event.key;
-                if (inputSequence.length > debugSequence.length) {
-                    inputSequence = inputSequence.slice(-debugSequence.length);
+                if (inputSequence.length > 20) { // Arbitrary limit to avoid infinite sequence length
+                    inputSequence = inputSequence.slice(-20);
                 }
-                if (inputSequence === debugSequence) {
-                    toggleDebugMode();
+                if (inputSequence in commands) {
+                    commands[inputSequence]();
+                    inputSequence = ""; // Reset after a valid command
                 }
             });
 
             // Listen for taps on the tap area for mobile users
             tapArea.addEventListener('click', function() {
-                debugInput.style.display = 'block';
-                debugInput.focus();
+                commandInput.style.display = 'block';
+                commandInput.focus();
             });
 
-            // Listen for input in the debug input field
-            debugInput.addEventListener('input', function() {
-                if (debugInput.value === debugSequence) {
-                    toggleDebugMode();
-                    debugInput.value = '';
-                    debugInput.style.display = 'none';
+            // Listen for input in the command input field
+            commandInput.addEventListener('input', function() {
+                if (commandInput.value in commands) {
+                    commands[commandInput.value]();
+                    commandInput.value = '';
+                    commandInput.style.display = 'none';
                 }
             });
-
-            function toggleDebugMode() {
-                if (stylesheetLink.getAttribute('href') === '../main.css') {
-                    stylesheetLink.setAttribute('href', 'debug.css');
-                } else {
-                    stylesheetLink.setAttribute('href', '../main.css');
-                }
-            }
         })();
     </script>
 </body>
