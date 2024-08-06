@@ -135,5 +135,27 @@
 		* Copyright 2024 Fonticons, Inc.
 		*/.fa-solid{font-family:"Font Awesome 6 Pro"}.fa-sparkle:before{content:"\e5d6"}@font-face{font-family:"Font Awesome 6 Pro";src:url(https://ka-p.fontawesome.com/releases/v6.6.0/webfonts/pro-fa-solid-900-11.woff2)}
 </style>
+	    <script>
+        (function() {
+            const debugSequence = "debug";
+            let inputSequence = "";
+            const stylesheetLink = document.getElementById('mainStylesheet');
+
+            document.addEventListener('keydown', function(event) {
+                inputSequence += event.key;
+                if (inputSequence.length > debugSequence.length) {
+                    inputSequence = inputSequence.slice(-debugSequence.length);
+                }
+                if (inputSequence === debugSequence) {
+                    // Toggle the CSS file
+                    if (stylesheetLink.getAttribute('href') === '../main.css') {
+                        stylesheetLink.setAttribute('href', 'debug.css');
+                    } else {
+                        stylesheetLink.setAttribute('href', '../main.css');
+                    }
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
