@@ -58,7 +58,7 @@ html, body {
 }
 /* cursor glow effect */
 :root {
-  --glow-rgb: 152, 250, 203;
+  --glow-rgb: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(51,51,251,1) 35%, rgba(0,212,255,1) 100%);
 }
 
 .glow-point {
