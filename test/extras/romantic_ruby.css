@@ -48,7 +48,7 @@ p {
 
 /* custom cursor ! */
 html {
-    cursor: url('https://github.com/neonforestmist/neonwebsite/raw/main/cursor.cur'), default;
+    cursor: url('https://github.com/neonforestmist/neonwebsite/raw/main/test/extras/assets/romantic_ruby_cursor.cur'), default;
     height: 100%;
 }
 
@@ -58,7 +58,7 @@ html, body {
 }
 /* cursor glow effect */
 :root {
-  --glow-rgb: 152,250,203;
+  --glow-rgb: 193,23,23;
 }
 
 .glow-point {
@@ -127,4 +127,3 @@ html, body {
     opacity: 0;
   }
 }
-
