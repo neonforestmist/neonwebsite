@@ -31,7 +31,7 @@ h1, h2, p, a {
 }
 
 h1 {
-    background: linear-gradient(to right, #7bd7af 0%, #6393C1 42%);
+    background: linear-gradient(to right, #daa7f2 0%, #725a7d 42%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 2.5em; 
