@@ -163,8 +163,10 @@
             const stylesheetLink = document.getElementById('mainStylesheet');
             if (stylesheetLink.getAttribute('href') === '../main.css') {
                 stylesheetLink.setAttribute('href', 'debug.css');
+                loadScript('debug.js');
             } else {
                 stylesheetLink.setAttribute('href', '../main.css');
+                loadScript('../main.js');
             }
         },
         // Adding more commands here
@@ -175,68 +177,85 @@
             const stylesheetLink = document.getElementById('mainStylesheet');
             if (stylesheetLink.getAttribute('href') === '../main.css') {
                 stylesheetLink.setAttribute('href', 'extras/romantic_ruby.css');
+                loadScript('extras/romantic_ruby.js');
             } else {
                 stylesheetLink.setAttribute('href', '../main.css');
+                loadScript('../main.js');
             }
+
         },
         "cosmiclavender": function() {
             const stylesheetLink = document.getElementById('mainStylesheet');
             if (stylesheetLink.getAttribute('href') === '../main.css') {
                 stylesheetLink.setAttribute('href', 'extras/cosmic_lavender.css');
+                loadScript('extras/cosmic_lavender.js');
             } else {
                 stylesheetLink.setAttribute('href', '../main.css');
+                loadScript('../main.js');
             }
+
         },
         "honeydew": function() {
             const stylesheetLink = document.getElementById('mainStylesheet');
             if (stylesheetLink.getAttribute('href') === '../main.css') {
                 stylesheetLink.setAttribute('href', 'extras/honeydew.css');
+                loadScript('extras/honeydew.js');
             } else {
                 stylesheetLink.setAttribute('href', '../main.css');
+                loadScript('../main.js');
             }
         },
         "shiftingrose": function() {
             const stylesheetLink = document.getElementById('mainStylesheet');
             if (stylesheetLink.getAttribute('href') === '../main.css') {
                 stylesheetLink.setAttribute('href', 'extras/shifting_rose.css');
+                loadScript('extras/shifting_rose.js');
             } else {
                 stylesheetLink.setAttribute('href', '../main.css');
+                loadScript('../main.js');
             }
+
         }
     };
 
+    const commandInput = document.getElementById('commandInput');
+    const tapArea = document.getElementById('tapArea');
 
-            const commandInput = document.getElementById('commandInput');
-            const tapArea = document.getElementById('tapArea');
+    // Function to load a script dynamically
+    function loadScript(scriptUrl) {
+        const script = document.createElement('script');
+        script.src = scriptUrl;
+        document.head.appendChild(script);
+    }
 
-            // Listen for key sequences for desktop users
-            let inputSequence = "";
-            document.addEventListener('keydown', function(event) {
-                inputSequence += event.key;
-                if (inputSequence.length > 20) { // Arbitrary limit to avoid infinite sequence length
-                    inputSequence = inputSequence.slice(-20);
-                }
-                if (inputSequence in commands) {
-                    commands[inputSequence]();
-                    inputSequence = ""; // Reset after a valid command
-                }
-            });
+    // Listen for key sequences for desktop users
+    let inputSequence = "";
+    document.addEventListener('keydown', function(event) {
+        inputSequence += event.key;
+        if (inputSequence.length > 20) { // Arbitrary limit to avoid infinite sequence length
+            inputSequence = inputSequence.slice(-20);
+        }
+        if (inputSequence in commands) {
+            commands[inputSequence]();
+            inputSequence = ""; // Reset after a valid command
+        }
+    });
 
-            // Listen for taps on the tap area for mobile users
-            tapArea.addEventListener('click', function() {
-                commandInput.style.display = 'block';
-                commandInput.focus();
-            });
+    // Listen for taps on the tap area for mobile users
+    tapArea.addEventListener('click', function() {
+        commandInput.style.display = 'block';
+        commandInput.focus();
+    });
 
-            // Listen for input in the command input field
-            commandInput.addEventListener('input', function() {
-                if (commandInput.value in commands) {
-                    commands[commandInput.value]();
-                    commandInput.value = '';
-                    commandInput.style.display = 'none';
-                }
-            });
-        })();
+    // Listen for input in the command input field
+    commandInput.addEventListener('input', function() {
+        if (commandInput.value in commands) {
+            commands[commandInput.value]();
+            commandInput.value = '';
+            commandInput.style.display = 'none';
+        }
+    });
+})();
     </script>
 </body>
 </html>
