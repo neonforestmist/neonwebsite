@@ -167,10 +167,38 @@
                         stylesheetLink.setAttribute('href', '../main.css');
                     }
                 },
-                // Add more commands here
+                // Adding more commands here
                 "easteregg": function() {
                     alert("Easter Egg Found!");
                 }
+		"romanticruby": function() {
+                    const stylesheetLink = document.getElementById('mainStylesheet');
+                    if (stylesheetLink.getAttribute('href') === '../main.css') {
+                        stylesheetLink.setAttribute('href', 'extras/romantic_ruby.css');
+                    } else {
+                        stylesheetLink.setAttribute('href', '../main.css');
+                    }
+		"cosmiclavender": function() {
+                    const stylesheetLink = document.getElementById('mainStylesheet');
+                    if (stylesheetLink.getAttribute('href') === '../main.css') {
+                        stylesheetLink.setAttribute('href', 'extras/cosmic_lavender.css');
+                    } else {
+                        stylesheetLink.setAttribute('href', '../main.css');
+                    }
+		"honeydew": function() {
+                    const stylesheetLink = document.getElementById('mainStylesheet');
+                    if (stylesheetLink.getAttribute('href') === '../main.css') {
+                        stylesheetLink.setAttribute('href', 'extras/honeydew.css');
+                    } else {
+                        stylesheetLink.setAttribute('href', '../main.css');
+                    }
+		"shiftingrose": function() {
+                    const stylesheetLink = document.getElementById('mainStylesheet');
+                    if (stylesheetLink.getAttribute('href') === '../main.css') {
+                        stylesheetLink.setAttribute('href', 'extras/shifting_rose.css');
+                    } else {
+                        stylesheetLink.setAttribute('href', '../main.css');
+                    }
             };
 
             const commandInput = document.getElementById('commandInput');
