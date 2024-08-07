@@ -157,49 +157,54 @@
         @font-face{font-family:"Font Awesome 6 Pro";src:url(https://ka-p.fontawesome.com/releases/v6.6.0/webfonts/pro-fa-solid-900-11.woff2)}
     </style>
     <script>
-        (function() {
-            const commands = {
-                "debug": function() {
-                    const stylesheetLink = document.getElementById('mainStylesheet');
-                    if (stylesheetLink.getAttribute('href') === '../main.css') {
-                        stylesheetLink.setAttribute('href', 'debug.css');
-                    } else {
-                        stylesheetLink.setAttribute('href', '../main.css');
-                    }
-                },
-                // Adding more commands here
-                "easteregg": function() {
-                    alert("Easter Egg Found!");
-                }
-		"romanticruby": function() {
-                    const stylesheetLink = document.getElementById('mainStylesheet');
-                    if (stylesheetLink.getAttribute('href') === '../main.css') {
-                        stylesheetLink.setAttribute('href', 'extras/romantic_ruby.css');
-                    } else {
-                        stylesheetLink.setAttribute('href', '../main.css');
-                    }
-		"cosmiclavender": function() {
-                    const stylesheetLink = document.getElementById('mainStylesheet');
-                    if (stylesheetLink.getAttribute('href') === '../main.css') {
-                        stylesheetLink.setAttribute('href', 'extras/cosmic_lavender.css');
-                    } else {
-                        stylesheetLink.setAttribute('href', '../main.css');
-                    }
-		"honeydew": function() {
-                    const stylesheetLink = document.getElementById('mainStylesheet');
-                    if (stylesheetLink.getAttribute('href') === '../main.css') {
-                        stylesheetLink.setAttribute('href', 'extras/honeydew.css');
-                    } else {
-                        stylesheetLink.setAttribute('href', '../main.css');
-                    }
-		"shiftingrose": function() {
-                    const stylesheetLink = document.getElementById('mainStylesheet');
-                    if (stylesheetLink.getAttribute('href') === '../main.css') {
-                        stylesheetLink.setAttribute('href', 'extras/shifting_rose.css');
-                    } else {
-                        stylesheetLink.setAttribute('href', '../main.css');
-                    }
-            };
+(function() {
+    const commands = {
+        "debug": function() {
+            const stylesheetLink = document.getElementById('mainStylesheet');
+            if (stylesheetLink.getAttribute('href') === '../main.css') {
+                stylesheetLink.setAttribute('href', 'debug.css');
+            } else {
+                stylesheetLink.setAttribute('href', '../main.css');
+            }
+        },
+        // Adding more commands here
+        "easteregg": function() {
+            alert("Easter Egg Found!");
+        },
+        "romanticruby": function() {
+            const stylesheetLink = document.getElementById('mainStylesheet');
+            if (stylesheetLink.getAttribute('href') === '../main.css') {
+                stylesheetLink.setAttribute('href', 'extras/romantic_ruby.css');
+            } else {
+                stylesheetLink.setAttribute('href', '../main.css');
+            }
+        },
+        "cosmiclavender": function() {
+            const stylesheetLink = document.getElementById('mainStylesheet');
+            if (stylesheetLink.getAttribute('href') === '../main.css') {
+                stylesheetLink.setAttribute('href', 'extras/cosmic_lavender.css');
+            } else {
+                stylesheetLink.setAttribute('href', '../main.css');
+            }
+        },
+        "honeydew": function() {
+            const stylesheetLink = document.getElementById('mainStylesheet');
+            if (stylesheetLink.getAttribute('href') === '../main.css') {
+                stylesheetLink.setAttribute('href', 'extras/honeydew.css');
+            } else {
+                stylesheetLink.setAttribute('href', '../main.css');
+            }
+        },
+        "shiftingrose": function() {
+            const stylesheetLink = document.getElementById('mainStylesheet');
+            if (stylesheetLink.getAttribute('href') === '../main.css') {
+                stylesheetLink.setAttribute('href', 'extras/shifting_rose.css');
+            } else {
+                stylesheetLink.setAttribute('href', '../main.css');
+            }
+        }
+    };
+
 
             const commandInput = document.getElementById('commandInput');
             const tapArea = document.getElementById('tapArea');
