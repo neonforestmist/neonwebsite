@@ -76,7 +76,7 @@ const createStar = position => {
   const star = document.createElement("span"),
         color = selectRandom(config.colors);
   
-  star.className = "star fa-solid fa-sparkle";
+  star.className = "♡";
   
   star.style.left = px(position.x);
   star.style.top = px(position.y);
