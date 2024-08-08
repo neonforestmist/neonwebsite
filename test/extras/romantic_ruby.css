@@ -4,7 +4,7 @@ body {
 
 body, html {
     font-size: 100%;
-    background: linear-gradient(132deg, rgba(2,0,36,1) 0%, rgba(7,68,73,1) 69%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(0deg, rgb(112 52 52) 0%, #580820 69%, rgba(0, 0, 0, 1) 100%);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
@@ -18,8 +18,8 @@ h1, h2, p, a {
 }
 
 h1 {
-    background: linear-gradient(to right, #7bd7af 0%, #6393C1 42%);
-    -webkit-background-clip: text;
+background: linear-gradient(to right, #b22d32 0%, #ebafa1 42%);
+-webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 2.5em; 
     margin: 20px 0;
