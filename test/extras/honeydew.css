@@ -4,7 +4,8 @@ body {
 
 body, html {
     font-size: 100%;
-    background: linear-gradient(132deg, rgba(2,0,36,1) 0%, rgba(7,68,73,1) 69%, rgba(0,0,0,1) 100%);
+background: rgb(188,238,174);
+background: radial-gradient(circle, rgba(188,238,174,1) 0%, rgba(137,161,114,1) 89%);
     background-size: cover;
     background-attachment: fixed;
     margin: 0;
@@ -18,7 +19,7 @@ h1, h2, p, a {
 }
 
 h1 {
-    background: linear-gradient(to right, #7bd7af 0%, #6393C1 42%);
+    background: linear-gradient(to right, rgb(210 255 197) 0%, #6ef29a 42%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 2.5em; 
@@ -127,4 +128,3 @@ html, body {
     opacity: 0;
   }
 }
-
