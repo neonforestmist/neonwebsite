@@ -133,22 +133,34 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Default gradient */
+            /* background: linear-gradient(to right, #ff7e5f, #feb47b); Default gradient */
         }
         #themeButtons button:hover {
             background-color: #555;
         }
         #buttonShiftingRose {
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            background: #F8D9DE;
+            background: linear-gradient(to right, #F8D9DE 35%, #FA8CFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         #buttonRomanticRuby {
-            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            background: #FF3C5E;
+            background: radial-gradient(circle farthest-corner at center center, #FF3C5E 0%, #580833 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         #buttonCosmicLavender {
-            background: linear-gradient(to right, #c3cfe2, #c3cfe2);
+            background: #C984FF;
+            background: radial-gradient(circle farthest-side at right center, #C984FF 0%, #6C1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;        
         }
         #buttonHoneydew {
-            background: linear-gradient(to right, #d4fc79, #96e6a1);
+            background: #B1E182;
+            background: linear-gradient(to top right, #B1E182 0%, #E2F8CD 74%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
@@ -174,10 +186,11 @@
         </div>
     <div id="tapArea"></div>
     <div id="themeButtons">
-        <button id="buttonShiftingRose" onclick="toggleTheme('extras/shifting_rose.css')">Shifting Rose</button>
-        <button id="buttonRomanticRuby" onclick="toggleTheme('extras/romantic_ruby.css')">Romantic Ruby</button>
-        <button id="buttonCosmicLavender" onclick="toggleTheme('extras/cosmic_lavender.css')">Cosmic Lavender</button>
-        <button id="buttonHoneydew" onclick="toggleTheme('extras/honeydew.css')">Honeydew</button>
+        <div id="themeText">=== Secret Theme Menu ===</div>
+        <button id="buttonShiftingRose" onclick="toggleTheme('extras/shifting_rose.css')">❀ Shifting Rose ❀</button>
+        <button id="buttonRomanticRuby" onclick="toggleTheme('extras/romantic_ruby.css')">♡◆ Romantic Ruby ◆♡</button>
+        <button id="buttonCosmicLavender" onclick="toggleTheme('extras/cosmic_lavender.css')">✧∘* Cosmic Lavender ✧･ﾟ</button>
+        <button id="buttonHoneydew" onclick="toggleTheme('extras/honeydew.css')">⊹ ˚｡⋆ Honeydew ° ⊹ </button>
     </div>
     <script src="../main.js"></script>
     <style media="all" id="fa-main">
