@@ -105,23 +105,39 @@
 	#menu input:checked + label:before {content:"\00d7"}
 	#menu input:checked ~ ul {display:block}
 }
-        #commandInput {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            display: none;
-            z-index: 1000;
-        }
         #tapArea {
             position: fixed;
             bottom: 10px;
             right: 10px;
             width: 50px;
             height: 50px;
-            background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent for demonstration */
+            background-color: rgba(255, 255, 255, 0.1); /* Very low opacity for the easter egg trigger */
             z-index: 1000;
+            cursor: pointer;
         }
-
+        #themeButtons {
+            display: none; /* Hidden initially */
+            position: fixed;
+            bottom: 70px;
+            right: 10px;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+            border-radius: 5px;
+            padding: 10px;
+        }
+        #themeButtons button {
+            display: block;
+            margin: 5px 0;
+            padding: 10px;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #themeButtons button:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
@@ -144,8 +160,13 @@
         <div class="glitch-wrapper">
             <div class="glitch" data-text="What are you looking at? There’s nothing to see here…">What are you looking at? There’s nothing to see here…</div>
         </div>
-    <input type="text" id="debugInput" placeholder="Type something">
     <div id="tapArea"></div>
+    <div id="themeButtons">
+        <button onclick="toggleTheme('extras/shifting_rose.css')">Shifting Rose</button>
+        <button onclick="toggleTheme('extras/romantic_ruby.css')">Romantic Ruby</button>
+        <button onclick="toggleTheme('extras/cosmic_lavender.css')">Cosmic Lavender</button>
+        <button onclick="toggleTheme('extras/honeydew.css')">Honeydew</button>
+    </div>
     <script src="../main.js"></script>
     <style media="all" id="fa-main">
         /*! (makes the stars work)
@@ -158,105 +179,17 @@
         @font-face{font-family:"Font Awesome 6 Pro";src:url(https://ka-p.fontawesome.com/releases/v6.6.0/webfonts/pro-fa-solid-900-11.woff2)}
     </style>
     <script>
-(function() {
-    const commands = {
-        "debug": function() {
+        function toggleTheme(theme) {
             const stylesheetLink = document.getElementById('mainStylesheet');
-            if (stylesheetLink.getAttribute('href') === '../main.css') {
-                stylesheetLink.setAttribute('href', 'debug.css');
-                loadScript('debug.js');
-            } else {
-                stylesheetLink.setAttribute('href', '../main.css');
-                loadScript('../main.js');
-            }
-        },
-        // Adding more commands here
-        "easteregg": function() {
-            alert("Easter Egg Found!");
-        },
-        "romanticruby": function() {
-            const stylesheetLink = document.getElementById('mainStylesheet');
-            if (stylesheetLink.getAttribute('href') === '../main.css') {
-                stylesheetLink.setAttribute('href', 'extras/romantic_ruby.css');
-                loadScript('extras/romantic_ruby.js');
-            } else {
-                stylesheetLink.setAttribute('href', '../main.css');
-                loadScript('../main.js');
-            }
-
-        },
-        "cosmiclavender": function() {
-            const stylesheetLink = document.getElementById('mainStylesheet');
-            if (stylesheetLink.getAttribute('href') === '../main.css') {
-                stylesheetLink.setAttribute('href', 'extras/cosmic_lavender.css');
-                loadScript('extras/cosmic_lavender.js');
-            } else {
-                stylesheetLink.setAttribute('href', '../main.css');
-                loadScript('../main.js');
-            }
-
-        },
-        "honeydew": function() {
-            const stylesheetLink = document.getElementById('mainStylesheet');
-            if (stylesheetLink.getAttribute('href') === '../main.css') {
-                stylesheetLink.setAttribute('href', 'extras/honeydew.css');
-                loadScript('extras/honeydew.js');
-            } else {
-                stylesheetLink.setAttribute('href', '../main.css');
-                loadScript('../main.js');
-            }
-        },
-        "shiftingrose": function() {
-            const stylesheetLink = document.getElementById('mainStylesheet');
-            if (stylesheetLink.getAttribute('href') === '../main.css') {
-                stylesheetLink.setAttribute('href', 'extras/shifting_rose.css');
-                loadScript('extras/shifting_rose.js');
-            } else {
-                stylesheetLink.setAttribute('href', '../main.css');
-                loadScript('../main.js');
-            }
-
+            stylesheetLink.setAttribute('href', theme);
         }
-    };
 
-    const commandInput = document.getElementById('commandInput');
-    const tapArea = document.getElementById('tapArea');
+        const tapArea = document.getElementById('tapArea');
+        const themeButtons = document.getElementById('themeButtons');
 
-    // Function to load a script dynamically
-    function loadScript(scriptUrl) {
-        const script = document.createElement('script');
-        script.src = scriptUrl;
-        document.head.appendChild(script);
-    }
-
-    // Listen for key sequences for desktop users
-    let inputSequence = "";
-    document.addEventListener('keydown', function(event) {
-        inputSequence += event.key;
-        if (inputSequence.length > 20) { // Arbitrary limit to avoid infinite sequence length
-            inputSequence = inputSequence.slice(-20);
-        }
-        if (inputSequence in commands) {
-            commands[inputSequence]();
-            inputSequence = ""; // Reset after a valid command
-        }
-    });
-
-    // Listen for taps on the tap area for mobile users
-    tapArea.addEventListener('click', function() {
-        commandInput.style.display = 'block';
-        commandInput.focus();
-    });
-
-    // Listen for input in the command input field
-    commandInput.addEventListener('input', function() {
-        if (commandInput.value in commands) {
-            commands[commandInput.value]();
-            commandInput.value = '';
-            commandInput.style.display = 'none';
-        }
-    });
-})();
+        tapArea.addEventListener('click', function() {
+            themeButtons.style.display = 'block';
+        });
     </script>
 </body>
 </html>
