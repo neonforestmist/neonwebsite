@@ -115,110 +115,98 @@
             z-index: 1000;
             cursor: pointer;
         }
-        #themeButtons {
-            display: none; /* Hidden initially */
+        /* Hidden button styles */
+        #themeButton {
             position: fixed;
-            bottom: 70px;
+            bottom: 10px;
             right: 10px;
-            z-index: 1000;
-            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-            border-radius: 5px;
-            padding: 10px;
+            width: 30px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
         }
-        #themeButtons button {
-            display: block;
-            margin: 5px 0;
+
+        /* Theme menu styles */
+        #themeMenu {
+            position: fixed;
+            bottom: 50px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 10px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #themeMenu.show {
+            display: flex;
+        }
+
+        #themeMenu button {
+            margin: 5px 0;
             color: white;
             border: none;
-            border-radius: 5px;
+            padding: 10px;
             cursor: pointer;
-            /* background: linear-gradient(to right, #ff7e5f, #feb47b); Default gradient */
+            text-align: center;
+            width: 150px;
         }
-        #themeButtons button:hover {
-            background-color: #555;
+
+        /* Theme-specific button colors */
+        #shiftingRoseBtn {
+            background: linear-gradient(to right, #f36b7f, #f39060);
         }
-        #buttonShiftingRose {
-            background: #F8D9DE;
-            background: linear-gradient(to right, #F8D9DE 35%, #FA8CFF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        #romanticRubyBtn {
+            background: linear-gradient(to right, #ff6b81, #ff7979);
         }
-        #buttonRomanticRuby {
-            background: #FF3C5E;
-            background: radial-gradient(circle farthest-corner at center center, #FF3C5E 0%, #580833 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        #cosmicLavenderBtn {
+            background: linear-gradient(to right, #9b59b6, #8e44ad);
         }
-        #buttonCosmicLavender {
-            background: #C984FF;
-            background: radial-gradient(circle farthest-side at right center, #C984FF 0%, #6C1493 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;        
+
+        #honeydewBtn {
+            background: linear-gradient(to right, #abe9cd, #3eadcf);
         }
-        #buttonHoneydew {
-            background: #B1E182;
-            background: linear-gradient(to top right, #B1E182 0%, #E2F8CD 74%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        /* Easter Egg Title */
+        #easterEggTitle {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 1.2em;
         }
     </style>
 </head>
 <body>
-    <nav id='menu'>
-        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
-        <ul>
-            <li><a href='/neonwebsite/'>Home</a></li>
-            <li><a class='dropdown-arrow' href='#'>Settings</a>
-                <ul class='sub-menus'>
-                    <li><a href='#'>Settings 1</a></li>
-                    <li><a href='#'>Settings 2</a></li>
-                </ul>
-            </li>
-            <li><a href='/neonwebsite/test/index.html'>Test</a></li>
-            <li><a href='index.html'>Contact Us</a></li>
-        </ul>
-    </nav>
-    <div class="content-wrapper">
-        <h1>Tester Page</h1>
-        <div class="glitch-wrapper">
-            <div class="glitch" data-text="What are you looking at? There’s nothing to see here…">What are you looking at? There’s nothing to see here…</div>
-        </div>
-    <div id="tapArea"></div>
-    <div id="themeButtons">
-        <div id="themeText">=== Secret Theme Menu ===</div>
-        <button id="buttonShiftingRose" onclick="toggleTheme('extras/shifting_rose.css')">❀ Shifting Rose ❀</button>
-        <button id="buttonRomanticRuby" onclick="toggleTheme('extras/romantic_ruby.css')">♡◆ Romantic Ruby ◆♡</button>
-        <button id="buttonCosmicLavender" onclick="toggleTheme('extras/cosmic_lavender.css')">✧∘* Cosmic Lavender ✧･ﾟ</button>
-        <button id="buttonHoneydew" onclick="toggleTheme('extras/honeydew.css')">⊹ ˚｡⋆ Honeydew ° ⊹ </button>
+    <h1>Welcome to the Hidden Easter Egg Menu!</h1>
+    <p>Explore the hidden themes!</p>
+
+    <div id="themeMenu">
+        <div id="easterEggTitle">Easter Egg Menu</div>
+        <button id="shiftingRoseBtn" onclick="changeTheme('shifting_rose.css', 'shifting_rose.js')">Shifting Rose</button>
+        <button id="romanticRubyBtn" onclick="changeTheme('romantic_ruby.css', 'romantic_ruby.js')">Romantic Ruby</button>
+        <button id="cosmicLavenderBtn" onclick="changeTheme('cosmic_lavender.css', 'cosmic_lavender.js')">Cosmic Lavender</button>
+        <button id="honeydewBtn" onclick="changeTheme('honeydew.css', 'honeydew.js')">Honeydew</button>
     </div>
-    <script src="../main.js"></script>
-    <style media="all" id="fa-main">
-        /*! (makes the stars work)
-        * Font Awesome Pro 6.6.0 by @fontawesome - https://fontawesome.com
-        * License - https://fontawesome.com/license (Commercial License)
-        * Copyright 2024 Fonticons, Inc.
-        */
-        .fa-solid{font-family:"Font Awesome 6 Pro"}
-        .fa-sparkle:before{content:"\e5d6"}
-        @font-face{font-family:"Font Awesome 6 Pro";src:url(https://ka-p.fontawesome.com/releases/v6.6.0/webfonts/pro-fa-solid-900-11.woff2)}
-    </style>
+
+    <button id="themeButton" onclick="toggleMenu()">☰</button>
+
     <script>
-        function toggleTheme(theme) {
-            const stylesheetLink = document.getElementById('mainStylesheet');
-            stylesheetLink.setAttribute('href', theme);
+        function toggleMenu() {
+            const menu = document.getElementById('themeMenu');
+            menu.classList.toggle('show');
         }
 
-        const tapArea = document.getElementById('tapArea');
-        const themeButtons = document.getElementById('themeButtons');
+        function changeTheme(cssFile, jsFile) {
+            // Change CSS file
+            const themeStylesheet = document.getElementById('themeStylesheet');
+            themeStylesheet.setAttribute('href', 'extras/' + cssFile);
 
-        tapArea.addEventListener('click', function() {
-            if (themeButtons.style.display === 'block') {
-                themeButtons.style.display = 'none';
-            } else {
-                themeButtons.style.display = 'block';
-            }
-        });
+            // Change JS file
+            const themeScript = document.getElementById('themeScript');
+            themeScript.setAttribute('src', 'extras/' + jsFile);
+        }
     </script>
 </body>
 </html>
