@@ -1,16 +1,29 @@
 body {
     color: #B6FAD3;
+    position: relative;
+    z-index: 1;
 }
 
 body, html {
     font-size: 100%;
-    background: linear-gradient(132deg, rgba(2,0,36,1) 0%, rgba(7,68,73,1) 69%, rgba(0,0,0,1) 100%);
-    background-size: cover;
-    background-attachment: fixed;
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: auto; /* i like scrolling */
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://raw.githubusercontent.com/neonforestmist/neonwebsite/main/test/extras/assets/shifting_rose_bg.gif') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(2px); /* Adjust the blur level as needed */
+    opacity: 0.85; /* Adjust the opacity as needed */
+    z-index: -1;
 }
 
 h1, h2, p, a {
@@ -18,8 +31,8 @@ h1, h2, p, a {
 }
 
 h1 {
-    background: linear-gradient(to right, #7bd7af 0%, #6393C1 42%);
-    -webkit-background-clip: text;
+background: linear-gradient(to right, #f2a7c6 0%, #ebafa1 42%);
+-webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 2.5em; 
     margin: 20px 0;
@@ -45,7 +58,6 @@ p {
     line-height: 1.6;
     margin: 15px 0;
 }
-
 /* custom cursor ! */
 html {
     cursor: url('https://github.com/neonforestmist/neonwebsite/raw/main/test/extras/assets/shifting_rose_cursor.cur'), default;
@@ -127,4 +139,3 @@ html, body {
     opacity: 0;
   }
 }
-
