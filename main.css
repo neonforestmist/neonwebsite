@@ -1,130 +1,176 @@
-body {
-    color: #B6FAD3;
+function updatemenu() {
+    if (document.getElementById('responsive-menu').checked == true) {
+        document.getElementById('menu').style.borderBottomRightRadius = '0';
+        document.getElementById('menu').style.borderBottomLeftRadius = '0';
+    } else {
+        document.getElementById('menu').style.borderRadius = '10px';
+    }
 }
 
-body, html {
-    font-size: 100%;
-    background: linear-gradient(132deg, rgba(2,0,36,1) 0%, rgba(7,68,73,1) 69%, rgba(0,0,0,1) 100%);
-    background-size: cover;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: auto; /* i like scrolling */
+function setTheme(themeName) {
+    // Remove the existing theme class
+    document.body.classList.remove('theme1', 'theme2', 'theme3');
+    // Add the new theme class
+    document.body.classList.add(themeName);
+    // Save the selected theme to localStorage
+    localStorage.setItem('theme', themeName);
+    // Update the checkboxes
+    updateThemeCheckboxes(themeName);
 }
 
-h1, h2, p, a {
-    padding-left: 18px;
+function updateThemeCheckboxes(themeName) {
+    document.getElementById('theme1').checked = themeName === 'theme1';
+    document.getElementById('theme2').checked = themeName === 'theme2';
+    document.getElementById('theme3').checked = themeName === 'theme3';
 }
 
-h1 {
-    background: linear-gradient(to right, #7bd7af 0%, #6393C1 42%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 2.5em; 
-    margin: 20px 0;
+// On page load, apply the saved theme
+window.onload = function() {
+    const savedTheme = localStorage.getItem('theme') || 'theme1';
+    setTheme(savedTheme);
+};
+// cursor effect magic
+let start = new Date().getTime();
+
+const originPosition = { x: 0, y: 0 };
+
+const last = {
+  starTimestamp: start,
+  starPosition: originPosition,
+  mousePosition: originPosition
 }
 
-h2 {
-    background: linear-gradient(to right, #B6FAD3 0%, #6EB0C3 42%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 2em; 
-    margin: 20px 0;
+const config = {
+  starAnimationDuration: 1500,
+  minimumTimeBetweenStars: 250,
+  minimumDistanceBetweenStars: 75,
+  glowDuration: 75,
+  maximumGlowPointSpacing: 10,
+  colors: ["119 242 240", "252 254 255"],
+  sizes: ["1.4rem", "1rem", "0.6rem"],
+  animations: ["fall-1", "fall-2", "fall-3"]
 }
 
-a {
-    background: #56cfff;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: #74bbd2;
-    font-size: 1.2em; 
+let count = 0;
+  
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
+      selectRandom = items => items[rand(0, items.length - 1)];
+
+const withUnit = (value, unit) => `${value}${unit}`,
+      px = value => withUnit(value, "px"),
+      ms = value => withUnit(value, "ms");
+
+const calcDistance = (a, b) => {
+  const diffX = b.x - a.x,
+        diffY = b.y - a.y;
+  
+  return Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
 }
 
-p {
-    font-size: 1.2em; 
-    line-height: 1.6;
-    margin: 15px 0;
+const calcElapsedTime = (start, end) => end - start;
+
+const appendElement = element => document.body.appendChild(element),
+      removeElement = (element, delay) => setTimeout(() => document.body.removeChild(element), delay);
+
+const createStar = position => {
+  const star = document.createElement("span"),
+        color = selectRandom(config.colors);
+  
+  star.className = "star fa-solid fa-sparkle";
+  
+  star.style.left = px(position.x);
+  star.style.top = px(position.y);
+  star.style.fontSize = selectRandom(config.sizes);
+  star.style.color = `rgb(${color})`;
+  star.style.textShadow = `0px 0px 1.5rem rgb(${color} / 0.5)`;
+  star.style.animationName = config.animations[count++ % 3];
+  star.style.starAnimationDuration = ms(config.starAnimationDuration);
+  
+  appendElement(star);
+
+  removeElement(star, config.starAnimationDuration);
 }
 
-/* custom cursor ! */
-html {
-    cursor: url('https://github.com/neonforestmist/neonwebsite/raw/main/cursor.cur'), default;
-    height: 100%;
+const createGlowPoint = position => {
+  const glow = document.createElement("div");
+  
+  glow.className = "glow-point";
+  
+  glow.style.left = px(position.x);
+  glow.style.top = px(position.y);
+  
+  appendElement(glow)
+  
+  removeElement(glow, config.glowDuration);
 }
 
-/* this does something */
-html, body {
-    height: 100%;
-}
-/* cursor glow effect */
-:root {
-  --glow-rgb: 152,250,203;
+const determinePointQuantity = distance => Math.max(
+  Math.floor(distance / config.maximumGlowPointSpacing),
+  1
+);
+
+const createGlow = (last, current) => {
+  const distance = calcDistance(last, current),
+        quantity = determinePointQuantity(distance);
+  
+  const dx = (current.x - last.x) / quantity,
+        dy = (current.y - last.y) / quantity;
+  
+  Array.from(Array(quantity)).forEach((_, index) => { 
+    const x = last.x + dx * index, 
+          y = last.y + dy * index;
+    
+    createGlowPoint({ x, y });
+  });
 }
 
-.glow-point {
-  position: absolute;
-  box-shadow: 0rem 0rem 1.2rem 0.6rem rgb(var(--glow-rgb));
-  pointer-events: none;
+const updateLastStar = position => {
+  last.starTimestamp = new Date().getTime();
+
+  last.starPosition = position;
 }
 
-.star {
-  position: absolute;
-  z-index: 2;
-  color: white;
-  font-size: 1rem;
-  animation-duration: 1500ms;
-  animation-fill-mode: forwards;
-  pointer-events: none;
-}
+const updateLastMousePosition = position => last.mousePosition = position;
 
-@keyframes fall-1 {
-  0% {
-    transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(0.25);
-    opacity: 0;
+const adjustLastMousePosition = position => {
+  if(last.mousePosition.x === 0 && last.mousePosition.y === 0) {
+    last.mousePosition = position;
+  }
+};
+
+const handleOnMove = e => {
+  const mousePosition = { x: e.clientX, y: e.clientY }
+  
+  adjustLastMousePosition(mousePosition);
+  
+  const now = new Date().getTime(),
+        hasMovedFarEnough = calcDistance(last.starPosition, mousePosition) >= config.minimumDistanceBetweenStars,
+        hasBeenLongEnough = calcElapsedTime(last.starTimestamp, now) > config.minimumTimeBetweenStars;
+  
+  if(hasMovedFarEnough || hasBeenLongEnough) {
+    createStar(mousePosition);
+    
+    updateLastStar(mousePosition);
   }
   
-  5% {
-    transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(1);
-    opacity: 1;
-  }
+  createGlow(last.mousePosition, mousePosition);
   
-  100% {
-    transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg) rotateZ(90deg) scale(1);
-    opacity: 0;
-  }
+  updateLastMousePosition(mousePosition);
 }
 
-@keyframes fall-2 {
-  0% {
-    transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);
-    opacity: 0;
-  }
-  
-  10% {
-    transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);
-    opacity: 1;
-  }
-  
-  100% {
-    transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg) scale(0.25);
-    opacity: 0;
-  }
+window.onmousemove = e => handleOnMove(e);
+
+window.ontouchmove = e => handleOnMove(e.touches[0]);
+
+document.body.onmouseleave = () => updateLastMousePosition(originPosition);
+
+var makeItRain = function() {
+  // JavaScript code for rain animation
+  // Add the provided JS code here
 }
 
-@keyframes fall-3 {
-  0% {
-    transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);
-    opacity: 0;
-  }
-  
-  15% {
-    transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);
-    opacity: 1;
-  }
-  
-  100% {
-    transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg) scale(0.5);
-    opacity: 0;
-  }
-}
-
+$('.splat-toggle.toggle').on('click', function() {
+  $('body').toggleClass('splat-toggle');
+  $('.splat-toggle.toggle').toggleClass('active');
+  makeItRain();
+});
