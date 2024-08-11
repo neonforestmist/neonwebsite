@@ -1,112 +1,279 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
     <link rel="stylesheet" href="../main.css">
     <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/neonforestmist/neonwebsite/main/icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
-    <title>Contact Us</title>
     <style>
-	    
-#menu {
-	background: #000000;
-	height: 45px;
-	padding-left: 18px;
-	border-radius: 10px;
-}
-#menu ul, #menu li {
-	margin: 0 auto;
-	padding: 0;
-	list-style: none
-}
-#menu ul {
-	width: 100%;
-	text-align: left;
-}
-#menu li {
-	display: inline-block;
-	position: relative;
-}
-#menu a {
-	display: block;
-	line-height: 45px;
-	padding: 0 14px;
-	text-decoration: none;
-	color: #91FFF5;
-	font-size: 16px;
-}
-#menu a.dropdown-arrow:after {
-	content: "\25BE";
-	margin-left: 5px;
-}
-#menu li a:hover {
-	color: #0099CC;
-	background: #002c3b;
-}
-#menu input {
-	display: none;
-	margin: 0;
-	padding: 0;
-	height: 45px;
-	width: 100%;
-	opacity: 0;
-	cursor: pointer
-}
-#menu label {
-	display: none;
-	line-height: 45px;
-	text-align: center;
-	position: absolute;
-	left: 35px
-}
-#menu label:before {
-	font-size: 1.6em;
-	color: #91FFF5;
-	content: "\2261"; 
-	margin-left: 20px;
-}
-#menu ul.sub-menus{
-	height: auto;
-	overflow: hidden;
-	width: 170px;
-	background: #000000;
-	position: absolute;
-	z-index: 99;
-	display: none;
-}
-#menu ul.sub-menus li {
-	display: block;
-	text-align: left;
-	width: 100%;
-}
-#menu ul.sub-menus a {
-	color: #000000;
-	font-size: 15px;
-}
-#menu li:hover ul.sub-menus {
-	display: block
-}
-#menu ul.sub-menus a:hover{
-	background: #002c3b;
-	color: #0099CC;
-}
-@media screen and (max-width: 800px){
-	#menu {position:relative}
-	#menu ul {background:#000000;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none;text-align:left;}
-	#menu ul.sub-menus {width:100%;position:static;}
-	#menu ul.sub-menus a {padding-left:30px;}
-	#menu li {display:block;float:none;width:auto;}
-	#menu input, #menu label {position:absolute;top:0;left:0;display:block}
-	#menu input {z-index:4}
-	#menu input:checked + label {color:#91FFF5}
-	#menu input:checked + label:before {content:"\00d7"}
-	#menu input:checked ~ ul {display:block}
-}
+        #menu {
+            background: #000000;
+            height: 45px;
+            padding-left: 18px;
+            border-radius: 10px;
+        }
+        #menu ul, #menu li {
+            margin: 0 auto;
+            padding: 0;
+            list-style: none
+        }
+        #menu ul {
+            width: 100%;
+            text-align: left;
+        }
+        #menu li {
+            display: inline-block;
+            position: relative;
+        }
+        #menu a {
+            display: block;
+            line-height: 45px;
+            padding: 0 14px;
+            text-decoration: none;
+            color: #91FFF5;
+            font-size: 16px;
+        }
+        #menu a.dropdown-arrow:after {
+            content: "\25BE";
+            margin-left: 5px;
+        }
+        #menu li a:hover {
+            color: #0099CC;
+            background: #002c3b;
+        }
+        #menu input {
+            display: none;
+            margin: 0;
+            padding: 0;
+            height: 45px;
+            width: 100%;
+            opacity: 0;
+            cursor: pointer
+        }
+        #menu label {
+            display: none;
+            line-height: 45px;
+            text-align: center;
+            position: absolute;
+            left: 35px
+        }
+        #menu label:before {
+            font-size: 1.6em;
+            color: #91FFF5;
+            content: "\2261"; 
+            margin-left: 20px;
+        }
+        #menu ul.sub-menus{
+            height: auto;
+            overflow: hidden;
+            width: 170px;
+            background: #000000;
+            position: absolute;
+            z-index: 99;
+            display: none;
+        }
+        #menu ul.sub-menus li {
+            display: block;
+            text-align: left;
+            width: 100%;
+        }
+        #menu ul.sub-menus a {
+            color: #000000;
+            font-size: 15px;
+        }
+        #menu li:hover ul.sub-menus {
+            display: block
+        }
+        #menu ul.sub-menus a:hover{
+            background: #002c3b;
+            color: #0099CC;
+        }
+        @media screen and (max-width: 800px){
+            #menu {position:relative}
+            #menu ul {background:#000000;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none;text-align:left;}
+            #menu ul.sub-menus {width:100%;position:static;}
+            #menu ul.sub-menus a {padding-left:30px;}
+            #menu li {display:block;float:none;width:auto;}
+            #menu input, #menu label {position:absolute;top:0;left:0;display:block}
+            #menu input {z-index:4}
+            #menu input:checked + label {color:#91FFF5}
+            #menu input:checked + label:before {content:"\00d7"}
+            #menu input:checked ~ ul {display:block}
+        }
+        
+        /* Rain Animation CSS */
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+s        }
+
+        .rain {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .rain.back-row {
+            display: none;
+            z-index: 1;
+            bottom: 60px;
+            opacity: 0.5;
+        }
+
+        body.back-row-toggle .rain.back-row {
+            display: block;
+        }
+
+        .drop {
+            position: absolute;
+            bottom: 100%;
+            width: 15px;
+            height: 120px;
+            pointer-events: none;
+            animation: drop 0.5s linear infinite;
+        }
+
+        @keyframes drop {
+            0% {
+                transform: translateY(0vh);
+            }
+            75% {
+                transform: translateY(90vh);
+            }
+            100% {
+                transform: translateY(90vh);
+            }
+        }
+
+        .stem {
+            width: 1px;
+            height: 60%;
+            margin-left: 7px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+            animation: stem 0.5s linear infinite;
+        }
+
+        @keyframes stem {
+            0% {
+                opacity: 1;
+            }
+            65% {
+                opacity: 1;
+            }
+            75% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .splat {
+            width: 15px;
+            height: 10px;
+            border-top: 2px dotted rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            opacity: 1;
+            transform: scale(0);
+            animation: splat 0.5s linear infinite;
+            display: none;
+        }
+
+        body.splat-toggle .splat {
+            display: block;
+        }
+
+        @keyframes splat {
+            0% {
+                opacity: 1;
+                transform: scale(0);
+            }
+            80% {
+                opacity: 1;
+                transform: scale(0);
+            }
+            90% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.5);
+            }
+        }
+
+        .toggles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+        }
+
+        .toggle {
+            position: absolute;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            line-height: 51px;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 10px;
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .toggle:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .toggle:active {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .toggle.active {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .splat-toggle {
+            top: 20px;
+        }
+
+        .back-row-toggle {
+            top: 90px;
+            line-height: 12px;
+            padding-top: 14px;
+        }
+
+        .single-toggle {
+            top: 160px;
+        }
+
+        body.single-toggle .drop {
+            display: none;
+        }
+
+        body.single-toggle .drop:nth-child(10) {
+            display: block;
+        }
     </style>
 </head>
-<body>
     <nav id='menu'>
         <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
         <ul>
@@ -121,14 +288,78 @@
             <li><a href='/neonwebsite/contact/'>Contact Us</a></li>
         </ul>
     </nav>
+
+    <!-- Mist effect then Rain Animation Elements -->
+    <div id="foglayer_01" class="fog">
+        <div class="image01"></div>
+        <div class="image02"></div>
+      </div>
+      <div id="foglayer_02" class="fog">
+        <div class="image01"></div>
+        <div class="image02"></div>
+      </div>
+      <div id="foglayer_03" class="fog">
+        <div class="image01"></div>
+        <div class="image02"></div>
+      </div>
+    <div class="rain front-row"></div>
+    <div class="rain back-row"></div>
+
     <h1>Contact Us</h1>
     <p>????</p>
+    <!-- Background Music -->
+    <audio id="background-music" autoplay loop>
+        <source src="https://github.com/neonforestmist/neonwebsite/raw/main/assets/neon_background_bgm.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <script src="../main.js"></script>
-	<style media="all" id="fa-main">/*! (makes the stars work)
-		* Font Awesome Pro 6.6.0 by @fontawesome - https://fontawesome.com
-		* License - https://fontawesome.com/license (Commercial License)
-		* Copyright 2024 Fonticons, Inc.
-		*/.fa-solid{font-family:"Font Awesome 6 Pro"}.fa-sparkle:before{content:"\e5d6"}@font-face{font-family:"Font Awesome 6 Pro";src:url(https://ka-p.fontawesome.com/releases/v6.6.0/webfonts/pro-fa-solid-900-11.woff2)}
-</style>
+    <script>
+        // Rain Animation JavaScript
+        let numberOfDrops = 100;
+        let drops = "";
+
+        for (let i = 0; i < numberOfDrops; i++) {
+            let dropLeft = Math.floor(Math.random() * 1600) + 'px';
+            let dropTop = Math.floor(Math.random() * 1200) - 100 + 'px';
+            drops += `<div class='drop' style='left: ${dropLeft}; top: ${dropTop};'><div class='stem'></div><div class='splat'></div></div>`;
+        }
+
+        document.querySelector('.front-row').innerHTML = drops;
+        document.querySelector('.back-row').innerHTML = drops;
+
+        // Toggle rain effects
+        document.querySelector('.splat-toggle').onclick = function () {
+            document.body.classList.toggle('splat-toggle');
+            this.classList.toggle('active');
+        };
+
+        document.querySelector('.back-row-toggle').onclick = function () {
+            document.body.classList.toggle('back-row-toggle');
+            this.classList.toggle('active');
+        };
+
+        document.querySelector('.single-toggle').onclick = function () {
+            document.body.classList.toggle('single-toggle');
+            this.classList.toggle('active');
+        };
+
+        // Audio control
+        document.addEventListener('click', function () {
+            let audio = document.getElementById('background-music');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        });
+    </script>
+    <style media="all" id="fa-main">/*! (makes the stars work)
+        * Font Awesome Pro 6.6.0 by @fontawesome - https://fontawesome.com
+        * License - https://fontawesome.com/license (Commercial License)
+        * Copyright  2024 Fonticons, Inc. 
+        */.fa-solid{font-family:"Font Awesome 6 Pro"}.fa-sparkle:before{content:"\e5d6"}@font-face{font-family:"Font Awesome 6 Pro";src:url(https://ka-p.fontawesome.com/releases/v6.6.0/webfonts/pro-fa-solid-900-11.woff2)}
+    </style>
 </body>
 </html>
+
