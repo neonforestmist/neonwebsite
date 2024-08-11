@@ -105,6 +105,174 @@
 	#menu input:checked + label:before {content:"\00d7"}
 	#menu input:checked ~ ul {display:block}
 }
+
+ /* Rain Animation CSS */
+ html {
+ height: 100%;
+}
+
+        body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+s        }
+
+        .rain {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .rain.back-row {
+            display: none;
+            z-index: 1;
+            bottom: 60px;
+            opacity: 0.5;
+        }
+
+        body.back-row-toggle .rain.back-row {
+            display: block;
+        }
+
+        .drop {
+            position: absolute;
+            bottom: 100%;
+            width: 15px;
+            height: 120px;
+            pointer-events: none;
+            animation: drop 0.5s linear infinite;
+        }
+
+        @keyframes drop {
+            0% {
+                transform: translateY(0vh);
+            }
+            75% {
+                transform: translateY(90vh);
+            }
+            100% {
+                transform: translateY(90vh);
+            }
+        }
+
+        .stem {
+            width: 1px;
+            height: 60%;
+            margin-left: 7px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+            animation: stem 0.5s linear infinite;
+        }
+
+        @keyframes stem {
+            0% {
+                opacity: 1;
+            }
+            65% {
+                opacity: 1;
+            }
+            75% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .splat {
+            width: 15px;
+            height: 10px;
+            border-top: 2px dotted rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            opacity: 1;
+            transform: scale(0);
+            animation: splat 0.5s linear infinite;
+            display: none;
+        }
+
+        body.splat-toggle .splat {
+            display: block;
+        }
+
+        @keyframes splat {
+            0% {
+                opacity: 1;
+                transform: scale(0);
+            }
+            80% {
+                opacity: 1;
+                transform: scale(0);
+            }
+            90% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.5);
+            }
+        }
+
+        .toggles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+        }
+
+        .toggle {
+            position: absolute;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            line-height: 51px;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 10px;
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .toggle:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .toggle:active {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .toggle.active {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .splat-toggle {
+            top: 20px;
+        }
+
+        .back-row-toggle {
+            top: 90px;
+            line-height: 12px;
+            padding-top: 14px;
+        }
+
+        .single-toggle {
+            top: 160px;
+        }
+
+        body.single-toggle .drop {
+            display: none;
+        }
+
+        body.single-toggle .drop:nth-child(10) {
+            display: block;
+        }
+
         #tapArea {
             position: fixed;
             bottom: 10px;
@@ -184,6 +352,24 @@ background: linear-gradient(to right, #FF06C1 0%, #8705E4 43%, #4605EC 62%, #11B
             <li><a href='/neonwebsite/contact/'>Contact Us</a></li>
         </ul>
     </nav>
+
+    <!-- Mist effect then Rain Animation Elements -->
+    <div id="foglayer_01" class="fog">
+        <div class="image01"></div>
+        <div class="image02"></div>
+      </div>
+      <div id="foglayer_02" class="fog">
+        <div class="image01"></div>
+        <div class="image02"></div>
+      </div>
+      <div id="foglayer_03" class="fog">
+        <div class="image01"></div>
+        <div class="image02"></div>
+      </div>
+    <div class="rain front-row"></div>
+    <div class="rain back-row"></div>
+
+
     <div class="content-wrapper">
         <h1>Tester Page</h1>
         <div class="glitch-wrapper">
@@ -198,6 +384,7 @@ background: linear-gradient(to right, #FF06C1 0%, #8705E4 43%, #4605EC 62%, #11B
         <button id="buttonHoneydew" onclick="toggleTheme('extras/honeydew.css')">⊹ ˚｡⋆ Honeydew ° ⊹ </button>
         <button id="buttonVaporwave" onclick="toggleTheme('extras/vaporwave.css')"> 𝕍𝕒𝕡𝕠𝕣𝕨𝕒𝕧𝕖 </button>
     </div>
+
     <script src="../main.js"></script>
     <style media="all" id="fa-main">
         /*! (makes the stars work)
@@ -223,6 +410,44 @@ background: linear-gradient(to right, #FF06C1 0%, #8705E4 43%, #4605EC 62%, #11B
                 themeButtons.style.display = 'none';
             } else {
                 themeButtons.style.display = 'block';
+            }
+        });
+            // Rain Animation JavaScript
+            let numberOfDrops = 100;
+        let drops = "";
+
+        for (let i = 0; i < numberOfDrops; i++) {
+            let dropLeft = Math.floor(Math.random() * 1600) + 'px';
+            let dropTop = Math.floor(Math.random() * 1200) - 100 + 'px';
+            drops += `<div class='drop' style='left: ${dropLeft}; top: ${dropTop};'><div class='stem'></div><div class='splat'></div></div>`;
+        }
+
+        document.querySelector('.front-row').innerHTML = drops;
+        document.querySelector('.back-row').innerHTML = drops;
+
+        // Toggle rain effects
+        document.querySelector('.splat-toggle').onclick = function () {
+            document.body.classList.toggle('splat-toggle');
+            this.classList.toggle('active');
+        };
+
+        document.querySelector('.back-row-toggle').onclick = function () {
+            document.body.classList.toggle('back-row-toggle');
+            this.classList.toggle('active');
+        };
+
+        document.querySelector('.single-toggle').onclick = function () {
+            document.body.classList.toggle('single-toggle');
+            this.classList.toggle('active');
+        };
+
+        // Audio control
+        document.addEventListener('click', function () {
+            let audio = document.getElementById('background-music');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
             }
         });
     </script>
