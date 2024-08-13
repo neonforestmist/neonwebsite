@@ -322,40 +322,48 @@
     </nav>
 
     <div class="settings-container">
-        <div class="settings-sidebar">
-            <div class="settings-menu">
-                <ul>
-                    <li class="active" data-tab="general">General</li>
-                    <li data-tab="themes">Themes</li>
-                    <li data-tab="audio">Audio</li>
-                </ul>
-            </div>
+        <div class="settings-menu">
+            <ul>
+                <li><a href="#" class="active" data-tab="general">General</a></li>
+                <li><a href="#" data-tab="themes">Themes</a></li>
+                <li><a href="#" data-tab="audio">Audio</a></li>
+            </ul>
         </div>
         <div class="settings-content">
             <div class="settings-tab active" id="general">
                 <h2>General Settings</h2>
-                <label>
-                    <input type="checkbox" id="dark-mode-toggle">
-                    Dark Mode
-                </label>
+                <div class="settings-grid">
+                    <label class="toggle-container">
+                        <input type="checkbox" id="dark-mode-toggle">
+                        <span class="toggle-slider"></span>
+                        ‎ Dark Mode
+                    </label>
+                </div>
             </div>
             <div class="settings-tab" id="themes">
                 <h2>Themes Settings</h2>
-                <label>
-                    <input type="checkbox" id="mist-toggle">
-                    Mist Effect
-                </label>
-                <label>
-                    <input type="checkbox" id="rain-toggle">
-                    Rain Animation
-                </label>
+                <div class="settings-grid">
+                    <label class="toggle-container">
+                        <input type="checkbox" id="mist-toggle">
+                        <span class="toggle-slider"></span>
+                        ‎ Mist Effect
+                    </label>
+                    <label class="toggle-container">
+                        <input type="checkbox" id="rain-toggle">
+                        <span class="toggle-slider"></span>
+                        ‎ Rain Animation
+                    </label>
+                </div>
             </div>
             <div class="settings-tab" id="audio">
                 <h2>Audio Settings</h2>
-                <label>
-                    <input type="checkbox" id="background-music-toggle">
-                    Background Music
-                </label>
+                <div class="settings-grid">
+                    <label class="toggle-container">
+                        <input type="checkbox" id="background-music-toggle">
+                        <span class="toggle-slider"></span>
+                        ‎ Background Music
+                    </label>
+                </div>
             </div>
         </div>
     </div>
