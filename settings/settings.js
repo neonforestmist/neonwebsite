@@ -1,63 +1,59 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Switch between tabs
-    const tabs = document.querySelectorAll('.settings-menu ul li');
-    const tabContents = document.querySelectorAll('.settings-tab');
+    // Tab Navigation
+    const menuLinks = document.querySelectorAll('.settings-menu a');
+    const tabs = document.querySelectorAll('.settings-tab');
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            // Remove active class from all tabs
-            tabs.forEach(t => t.classList.remove('active'));
-
-            // Add active class to clicked tab
-            tab.classList.add('active');
-
-            // Hide all tab contents
-            tabContents.forEach(content => content.classList.remove('active'));
-
-            // Show the corresponding tab content
-            const activeTab = document.getElementById(tab.dataset.tab);
-            activeTab.classList.add('active');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            menuLinks.forEach(link => link.classList.remove('active'));
+            this.classList.add('active');
+            const targetTab = this.getAttribute('data-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.getElementById(targetTab).classList.add('active');
         });
     });
 
-    // Dark Mode Toggle
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    darkModeToggle.addEventListener('change', function() {
-        if (darkModeToggle.checked) {
-            document.body.classList.add('dark-mode');
-        } else {
-            document.body.classList.remove('dark-mode');
+    const settings = {
+        'dark-mode-toggle': false,
+        'mist-toggle': false,
+        'rain-toggle': false,
+        'background-music-toggle': false
+    };
+
+    // Load settings from localStorage
+    Object.keys(settings).forEach(id => {
+        const toggle = document.getElementById(id);
+        const savedState = localStorage.getItem(id);
+        if (savedState === 'true') {
+            toggle.checked = true;
+            applySetting(id, true);
         }
+        toggle.addEventListener('change', function() {
+            localStorage.setItem(id, toggle.checked);
+            applySetting(id, toggle.checked);
+        });
     });
 
-    // Mist Effect Toggle
-    const mistToggle = document.getElementById('mist-toggle');
-    mistToggle.addEventListener('change', function() {
-        if (mistToggle.checked) {
-            document.body.classList.add('mist-effect');
-        } else {
-            document.body.classList.remove('mist-effect');
+    function applySetting(id, state) {
+        switch (id) {
+            case 'dark-mode-toggle':
+                document.body.classList.toggle('dark-mode', state);
+                break;
+            case 'mist-toggle':
+                document.body.classList.toggle('mist-effect', state);
+                break;
+            case 'rain-toggle':
+                document.body.classList.toggle('rain-animation', state);
+                break;
+            case 'background-music-toggle':
+                const audio = document.querySelector('audio');
+                if (state) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+                break;
         }
-    });
-
-    // Rain Animation Toggle
-    const rainToggle = document.getElementById('rain-toggle');
-    rainToggle.addEventListener('change', function() {
-        if (rainToggle.checked) {
-            document.body.classList.add('rain-animation');
-        } else {
-            document.body.classList.remove('rain-animation');
-        }
-    });
-
-    // Background Music Toggle
-    const backgroundMusicToggle = document.getElementById('background-music-toggle');
-    backgroundMusicToggle.addEventListener('change', function() {
-        const audio = document.querySelector('audio');
-        if (backgroundMusicToggle.checked) {
-            audio.play();
-        } else {
-            audio.pause();
-        }
-    });
+    }
 });
