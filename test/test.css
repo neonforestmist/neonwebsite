@@ -7,7 +7,7 @@
    text-align: center;
    background-color: transparent;
 }
-
+/* the thing that bounces around */
 .glitch {
    position: relative;
    font-size: 47px;
