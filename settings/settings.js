@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Create new audio element
                 audio = document.createElement('audio');
                 audio.id = 'background-music';
-                audio.src = 'path_to_your_music_file.mp3'; // Replace with the actual path to your music file
+                audio.src = 'https://github.com/neonforestmist/neonwebsite/raw/main/assets/neon_background_bgm.mp3';
                 audio.loop = true;
                 document.body.appendChild(audio);
             }
