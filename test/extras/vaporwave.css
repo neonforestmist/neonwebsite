@@ -60,7 +60,7 @@ p {
 
 /* custom cursor ! */
 html {
-    cursor: url('https://github.com/neonforestmist/neonwebsite/raw/main/test/extras/assets/cosmic_lavender_cursor.cur'), default;
+    cursor: url('assets/cosmic_lavender_cursor.cur'), default;
     height: 100%;
 }
 
