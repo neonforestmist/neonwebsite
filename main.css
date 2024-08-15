@@ -56,7 +56,7 @@ p {
 
 /* custom cursor ! */
 html {
-    cursor: url('https://github.com/neonforestmist/neonwebsite/raw/main/cursor.cur'), default;
+    cursor: url('cursor.cur'), default;
     height: 100%;
 }
 
