@@ -41,19 +41,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.classList.toggle('dark-mode', state);
                 break;
             case 'mist-toggle':
-                document.body.classList.toggle('mist-effect', state);
+                // Handle mist toggle
                 break;
             case 'rain-toggle':
-                document.body.classList.toggle('rain-animation', state);
+                // Handle rain toggle
                 break;
             case 'background-music-toggle':
-                const audio = document.querySelector('audio');
-                if (state) {
-                    audio.play();
-                } else {
-                    audio.pause();
-                }
+                handleBackgroundMusic(state);
                 break;
+        }
+    }
+
+    function handleBackgroundMusic(state) {
+        if (state) {
+            // Check if audio element exists
+            let audio = document.getElementById('background-music');
+            if (!audio) {
+                // Create new audio element
+                audio = document.createElement('audio');
+                audio.id = 'background-music';
+                audio.src = 'path_to_your_music_file.mp3'; // Replace with the actual path to your music file
+                audio.loop = true;
+                document.body.appendChild(audio);
+            }
+            audio.play();
+        } else {
+            const audio = document.getElementById('background-music');
+            if (audio) {
+                audio.pause();
+            }
         }
     }
 });
