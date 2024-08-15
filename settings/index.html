@@ -368,8 +368,34 @@
         </div>
     </div>
 
+    <!-- Add Audio Element -->
+    <audio id="background-music" loop>
+        <source src="https://github.com/neonforestmist/neonwebsite/raw/main/assets/neon_background_bgm.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <script src="settings.js"></script>
     <script src="../main.js"></script>
+    <script>
+        // Control background music with checkbox
+        document.getElementById('background-music-toggle').addEventListener('change', function() {
+            let audio = document.getElementById('background-music');
+            if (this.checked) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        });
+
+        // Play music on first click
+        document.addEventListener('click', function() {
+            let audio = document.getElementById("background-music");
+            if (!audio.played.length) {
+                audio.play();
+            }
+        }, { once: true });
+    </script>
+
 
     <style media="all" id="fa-main">/*! (makes the stars work)
         * Font Awesome Pro 6.6.0 by @fontawesome - https://fontawesome.com
