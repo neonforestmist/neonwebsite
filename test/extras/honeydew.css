@@ -48,7 +48,7 @@ p {
 
 /* custom cursor ! */
 html {
-    cursor: url('https://github.com/neonforestmist/neonwebsite/raw/main/test/extras/assets/honeydew_cursor.cur'), default;
+    cursor: url('assets/honeydew_cursor.cur'), default;
     height: 100%;
 }
 
