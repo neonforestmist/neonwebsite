@@ -377,25 +377,76 @@
     <script src="settings.js"></script>
     <script src="../main.js"></script>
     <script>
+        // Function to save settings to localStorage
+        function saveSettings(key, value) {
+            localStorage.setItem(key, JSON.stringify(value));
+        }
+
+        // Function to load settings from localStorage
+        function loadSettings(key) {
+            const value = localStorage.getItem(key);
+            return value ? JSON.parse(value) : null;
+        }
+
         // Control background music with checkbox
-        document.getElementById('background-music-toggle').addEventListener('change', function() {
-            let audio = document.getElementById('background-music');
+        const backgroundMusicToggle = document.getElementById('background-music-toggle');
+        const audio = document.getElementById('background-music');
+
+        backgroundMusicToggle.addEventListener('change', function() {
             if (this.checked) {
                 audio.play();
+                saveSettings('backgroundMusic', true);
             } else {
                 audio.pause();
+                saveSettings('backgroundMusic', false);
             }
         });
 
-        // Play music on first click
+        // Control mist effect
+        const mistToggle = document.getElementById('mist-toggle');
+        mistToggle.addEventListener('change', function() {
+            saveSettings('mistEffect', this.checked);
+            // Implement mist effect logic here
+        });
+
+        // Control rain animation
+        const rainToggle = document.getElementById('rain-toggle');
+        rainToggle.addEventListener('change', function() {
+            saveSettings('rainAnimation', this.checked);
+            // Implement rain animation logic here
+        });
+
+        // Load saved settings on page load
+        window.addEventListener('load', function() {
+            const savedBackgroundMusic = loadSettings('backgroundMusic');
+            const savedMistEffect = loadSettings('mistEffect');
+            const savedRainAnimation = loadSettings('rainAnimation');
+
+            if (savedBackgroundMusic !== null) {
+                backgroundMusicToggle.checked = savedBackgroundMusic;
+                if (savedBackgroundMusic) {
+                    audio.play();
+                }
+            }
+
+            if (savedMistEffect !== null) {
+                mistToggle.checked = savedMistEffect;
+                // Apply mist effect based on saved setting
+            }
+
+            if (savedRainAnimation !== null) {
+                rainToggle.checked = savedRainAnimation;
+                // Apply rain animation based on saved setting
+            }
+        });
+
+        // Play music on first interaction (to comply with autoplay policies)
         document.addEventListener('click', function() {
-            let audio = document.getElementById("background-music");
-            if (!audio.played.length) {
+            if (backgroundMusicToggle.checked && !audio.played.length) {
                 audio.play();
             }
         }, { once: true });
     </script>
-
 
     <style media="all" id="fa-main">/*! (makes the stars work)
         * Font Awesome Pro 6.6.0 by @fontawesome - https://fontawesome.com
