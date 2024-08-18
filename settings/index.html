@@ -337,12 +337,12 @@
                 <h2>Themes Settings</h2>
                 <div class="settings-grid">
                     <label class="toggle-container">
-                        <input type="checkbox" id="mist-toggle">
+                        <input type="checkbox" id="mist-toggle" checked>
                         <span class="toggle-slider"></span>
                         ‎ Mist Effect
                     </label>
                     <label class="toggle-container">
-                        <input type="checkbox" id="rain-toggle">
+                        <input type="checkbox" id="rain-toggle" checked>
                         <span class="toggle-slider"></span>
                         ‎ Rain Animation
                     </label>
@@ -397,16 +397,22 @@
 
         // Control mist effect
         const mistToggle = document.getElementById('mist-toggle');
+        const fogLayers = document.querySelectorAll('.fog');
         mistToggle.addEventListener('change', function() {
             saveSettings('mistEffect', this.checked);
-            // Implement mist effect logic here
+            fogLayers.forEach(layer => {
+                layer.style.display = this.checked ? 'block' : 'none';
+            });
         });
 
         // Control rain animation
         const rainToggle = document.getElementById('rain-toggle');
+        const rainLayers = document.querySelectorAll('.rain');
         rainToggle.addEventListener('change', function() {
             saveSettings('rainAnimation', this.checked);
-            // Implement rain animation logic here
+            rainLayers.forEach(layer => {
+                layer.style.display = this.checked ? 'block' : 'none';
+            });
         });
 
         // Load saved settings on page load
@@ -424,14 +430,31 @@
 
             if (savedMistEffect !== null) {
                 mistToggle.checked = savedMistEffect;
-                // Apply mist effect based on saved setting
+                fogLayers.forEach(layer => {
+                    layer.style.display = savedMistEffect ? 'block' : 'none';
+                });
             }
 
             if (savedRainAnimation !== null) {
                 rainToggle.checked = savedRainAnimation;
-                // Apply rain animation based on saved setting
+                rainLayers.forEach(layer => {
+                    layer.style.display = savedRainAnimation ? 'block' : 'none';
+                });
             }
         });
+
+        // Rain Animation JavaScript
+        let numberOfDrops = 100;
+        let drops = "";
+
+        for (let i = 0; i < numberOfDrops; i++) {
+            let dropLeft = Math.floor(Math.random() * 1600) + 'px';
+            let dropTop = Math.floor(Math.random() * 1200) - 100 + 'px';
+            drops += `<div class='drop' style='left: ${dropLeft}; top: ${dropTop};'><div class='stem'></div><div class='splat'></div></div>`;
+        }
+
+        document.querySelector('.front-row').innerHTML = drops;
+        document.querySelector('.back-row').innerHTML = drops;
 
         // Play music on first interaction (to comply with autoplay policies)
         document.addEventListener('click', function() {
