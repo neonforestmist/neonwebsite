@@ -123,6 +123,7 @@
             width: 100%;
             height: 100%;
             z-index: 2;
+            pointer-events: none;
         }
 
         .rain.back-row {
@@ -272,8 +273,19 @@
         body.single-toggle .drop:nth-child(10) {
             display: block;
         }
+
+        /* Mist effect */
+        .fog {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
     </style>
 </head>
+<body>
     <nav id='menu'>
         <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
         <ul>
