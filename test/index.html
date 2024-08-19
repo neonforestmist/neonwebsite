@@ -10,7 +10,6 @@
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <title>Tester Page</title>
     <style>
-	    
 #menu {
 	background: #000000;
 	height: 45px;
@@ -115,7 +114,7 @@
             height: 100%;
             margin: 0;
             overflow: hidden;
-s        }
+        }
 
         .rain {
             position: absolute;
@@ -353,35 +352,34 @@ background: linear-gradient(to right, #FF06C1 0%, #8705E4 43%, #4605EC 62%, #11B
     <div id="foglayer_01" class="fog">
         <div class="image01"></div>
         <div class="image02"></div>
-      </div>
-      <div id="foglayer_02" class="fog">
+    </div>
+    <div id="foglayer_02" class="fog">
         <div class="image01"></div>
         <div class="image02"></div>
-      </div>
-      <div id="foglayer_03" class="fog">
+    </div>
+    <div id="foglayer_03" class="fog">
         <div class="image01"></div>
         <div class="image02"></div>
-      </div>
+    </div>
     <div class="rain front-row"></div>
     <div class="rain back-row"></div>
-
 
     <div class="content-wrapper">
         <h1>Tester Page</h1>
         <div class="glitch-wrapper">
-            <div class="glitch" data-text="What are you looking at? There’s nothing to see here…">What are you looking at? There’s nothing to see here…</div>
+            <div class="glitch" data-text="What are you looking at? There's nothing to see here…">What are you looking at? There's nothing to see here…</div>
         </div>
+    </div>
     <div id="tapArea"></div>
     <div id="themeButtons">
         <div id="themeText">=== Secret Theme Menu ===</div>
-        <button id="buttonShiftingRose" onclick="toggleTheme('extras/shifting_rose.css')">❀ Shifting Rose ❀</button>
-        <button id="buttonRomanticRuby" onclick="toggleTheme('extras/romantic_ruby.css')">♡◆ Romantic Ruby ◆♡</button>
-        <button id="buttonCosmicLavender" onclick="toggleTheme('extras/cosmic_lavender.css')">✧∘* Cosmic Lavender ✧･ﾟ</button>
-        <button id="buttonHoneydew" onclick="toggleTheme('extras/honeydew.css')">⊹ ˚｡⋆ Honeydew ° ⊹ </button>
-        <button id="buttonVaporwave" onclick="toggleTheme('extras/vaporwave.css')"> 𝕍𝕒𝕡𝕠𝕣𝕨𝕒𝕧𝕖 </button>
+        <button id="buttonShiftingRose" onclick="toggleTheme('extras/shifting_rose.css', 'extras/shifting_rose.js')">❀ Shifting Rose ❀</button>
+        <button id="buttonRomanticRuby" onclick="toggleTheme('extras/romantic_ruby.css', 'extras/romantic_ruby.js')">♡◆ Romantic Ruby ◆♡</button>
+        <button id="buttonCosmicLavender" onclick="toggleTheme('extras/cosmic_lavender.css', 'extras/cosmic_lavender.js')">✧∘* Cosmic Lavender ✧･ﾟ</button>
+        <button id="buttonHoneydew" onclick="toggleTheme('extras/honeydew.css', 'extras/honeydew.js')">⊹ ˚｡⋆ Honeydew ° ⊹ </button>
+        <button id="buttonVaporwave" onclick="toggleTheme('extras/vaporwave.css', 'extras/vaporwave.js')"> 𝕍𝕒𝕡𝕠𝕣𝕨𝕒𝕧𝕖 </button>
     </div>
 
-    <script src="../main.js"></script>
     <style media="all" id="fa-main">
         /*! (makes the stars work)
         * Font Awesome Pro 6.6.0 by @fontawesome - https://fontawesome.com
@@ -393,9 +391,58 @@ background: linear-gradient(to right, #FF06C1 0%, #8705E4 43%, #4605EC 62%, #11B
         @font-face{font-family:"Font Awesome 6 Pro";src:url(https://ka-p.fontawesome.com/releases/v6.6.0/webfonts/pro-fa-solid-900-11.woff2)}
     </style>
     <script>
-        function toggleTheme(theme) {
+        let currentThemeScript = null;
+
+        function toggleTheme(cssPath, jsPath) {
             const stylesheetLink = document.getElementById('mainStylesheet');
-            stylesheetLink.setAttribute('href', theme);
+            stylesheetLink.setAttribute('href', cssPath);
+
+            // Remove the previous theme's script if it exists
+            if (currentThemeScript) {
+                document.body.removeChild(currentThemeScript);
+                currentThemeScript = null;
+            }
+
+            // Remove main.js if it exists
+            const mainScript = document.querySelector('script[src="../main.js"]');
+            if (mainScript) {
+                mainScript.remove();
+            }
+
+            // Create and append the new theme's script
+            const newScript = document.createElement('script');
+            newScript.src = jsPath + '?v=' + new Date().getTime(); // Add timestamp to force reload
+            document.body.appendChild(newScript);
+            currentThemeScript = newScript;
+
+            // Clean up any leftover effects or listeners from the previous theme
+            cleanupPreviousTheme();
+        }
+
+        function cleanupPreviousTheme() {
+            // Remove any global event listeners
+            window.onscroll = null;
+            window.onresize = null;
+
+            // Remove any intervals
+            for (let i = 1; i < 99999; i++) {
+                window.clearInterval(i);
+            }
+
+            // Remove any timeouts
+            currentThemeScript = document.createElement('script');
+            currentThemeScript.src = jsPath;
+            document.body.appendChild(currentThemeScript);
+
+            // Force a reload of the script
+            currentThemeScript.onload = function() {
+                this.onload = null;
+                document.body.removeChild(this);
+                let newScript = document.createElement('script');
+                newScript.src = jsPath + '?v=' + new Date().getTime();
+                document.body.appendChild(newScript);
+                currentThemeScript = newScript;
+            };
         }
 
         const tapArea = document.getElementById('tapArea');
@@ -406,44 +453,6 @@ background: linear-gradient(to right, #FF06C1 0%, #8705E4 43%, #4605EC 62%, #11B
                 themeButtons.style.display = 'none';
             } else {
                 themeButtons.style.display = 'block';
-            }
-        });
-            // Rain Animation JavaScript
-            let numberOfDrops = 100;
-        let drops = "";
-
-        for (let i = 0; i < numberOfDrops; i++) {
-            let dropLeft = Math.floor(Math.random() * 1600) + 'px';
-            let dropTop = Math.floor(Math.random() * 1200) - 100 + 'px';
-            drops += `<div class='drop' style='left: ${dropLeft}; top: ${dropTop};'><div class='stem'></div><div class='splat'></div></div>`;
-        }
-
-        document.querySelector('.front-row').innerHTML = drops;
-        document.querySelector('.back-row').innerHTML = drops;
-
-        // Toggle rain effects
-        document.querySelector('.splat-toggle').onclick = function () {
-            document.body.classList.toggle('splat-toggle');
-            this.classList.toggle('active');
-        };
-
-        document.querySelector('.back-row-toggle').onclick = function () {
-            document.body.classList.toggle('back-row-toggle');
-            this.classList.toggle('active');
-        };
-
-        document.querySelector('.single-toggle').onclick = function () {
-            document.body.classList.toggle('single-toggle');
-            this.classList.toggle('active');
-        };
-
-        // Audio control
-        document.addEventListener('click', function () {
-            let audio = document.getElementById('background-music');
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
             }
         });
     </script>
