@@ -91,8 +91,51 @@ function setBoard(sch){
   //make the inventory grid
   setInventory();
   
-  
+  // Create mobile control buttons
+  var controlsDiv = document.createElement("div");
+  controlsDiv.setAttribute("class", "controls");
+  panel.appendChild(controlsDiv);
+
+  var upButton = createButton("▲", "up");
+  var downButton = createButton("▼", "down");
+  var leftButton = createButton("◀", "left");
+  var rightButton = createButton("▶", "right");
+
+  controlsDiv.appendChild(upButton);
+  controlsDiv.appendChild(downButton);
+  controlsDiv.appendChild(leftButton);
+  controlsDiv.appendChild(rightButton);
 }
+
+function createButton(text, direction) {
+  var button = document.createElement("button");
+  button.innerHTML = text;
+  button.setAttribute("class", "control-button");
+  button.addEventListener("click", function() {
+    handleMobileControl(direction);
+  });
+  return button;
+}
+
+function handleMobileControl(direction) {
+  var e = { keyCode: 0 };
+  switch(direction) {
+    case "up":
+      e.keyCode = 38;
+      break;
+    case "left":
+      e.keyCode = 37;
+      break;
+    case "down":
+      e.keyCode = 40;
+      break;
+    case "right":
+      e.keyCode = 39;
+      break;
+  }
+  checkKey(e);
+}
+
 //takes the current x-y array attributes from the array, and a string gridid. 
 //each x-y coordinate should refer to one char, as to make the grid based on what char is it. 
 //hold on, is id even needed?
