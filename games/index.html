@@ -308,7 +308,7 @@ s        }
     <div class="game-grid">
         <div class="game-placeholder">
             Placeholder Game 1
-            <button class="play-button">Play</button>
+            <button class="play-button" id="play-game1">Play</button>
         </div>
         <div class="game-placeholder">
             Placeholder Game 2
@@ -371,6 +371,13 @@ s        }
             }
         });
     </script>
+        <script>
+            // Redirect for Placeholder Game 1
+            document.getElementById('play-game1').addEventListener('click', function() {
+                window.location.href = 'game1/index.html';
+            });
+        </script>
+    
     <script src="games.js"></script>
     <style media="all" id="fa-main">/*! (makes the stars work)
         * Font Awesome Pro 6.6.0 by @fontawesome - https://fontawesome.com
@@ -380,4 +387,5 @@ s        }
     </style>
 </body>
 </html>
+
 
