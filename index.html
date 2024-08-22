@@ -283,6 +283,45 @@
             z-index: 1;
             pointer-events: none;
         }
+        /* warning indicator */
+        .box {
+	padding: 10px 16px;
+	margin-top: 1.25rem;
+	margin-bottom: 1.25rem;
+	background-color: #f4f4f47c;
+	border-left: 8px solid;
+	line-height: 1.5;
+	transition: max-width 0.3s ease-in-out, font-size 0.3s ease-in-out;
+	box-sizing: border-box;
+    font-weight: bold;
+    font-size: 35px;
+    position: relative;
+}
+
+.danger {
+	color: #ff0004;
+	background-color: #ff000038;
+	border-color: #ff0000;
+}
+
+@media (min-width: 992px) {
+	.box {
+		width: 100%;
+        max-width: 550px;
+		font-size: 18px;
+	}
+}
+
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #ff0004;
+}
+
     </style>
 </head>
 <body>
@@ -312,10 +351,13 @@
       </div>
     <div class="rain front-row"></div>
     <div class="rain back-row"></div>
-
+    <div id="warning-box" class="box danger">
+        ⚠️ The website is 9% complete, most things are unfinished. ⚠️
+        <span class="close-btn" onclick="closeWarning()">✕</span>
+    </div>
     <h1>Hi! This is a test website.</h1>
     <h2>About the website</h2>
-    <p>⚠️ This website is about 9% complete ⚠️</p>
+    <p>N/A</p>
     <h2>Anything else?</h2>
     <p>no.</p>
     <h2>Make a ticket</h2>
@@ -385,6 +427,11 @@
                 }
             }
         });
+
+        // Function to close the warning box
+        function closeWarning() {
+            document.getElementById('warning-box').style.display = 'none';
+        }
     </script>
     <style media="all" id="fa-main">/*! (makes the stars work)
         * Font Awesome Pro 6.6.0 by @fontawesome - https://fontawesome.com
