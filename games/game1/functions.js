@@ -157,7 +157,7 @@ function addToGrid(x,y,id){
     var newGrid= document.createElement("div");
     newGrid.setAttribute("class", "grid");
     newGrid.setAttribute("id", curId);
-    newGrid.style.backgroundColor = "gray";
+    newGrid.style.backgroundImage = "url('img/background.png')";
     board.appendChild(newGrid);
   }
   else if(newArr[x][y] === "S"){
@@ -206,7 +206,7 @@ function addToGrid(x,y,id){
     newGrid.setAttribute("class", "grid");
     newGrid.setAttribute("id", curId);
     var newImg = document.createElement("img");
-    newImg.src =  'img/key.jpg';
+    newImg.src =  'img/key.png';
     newGrid.appendChild(newImg);
     board.appendChild(newGrid);
   }
@@ -753,7 +753,7 @@ function addItem(itemChar){
       var tempLoc = "i" + indexCount;
       if(itemChar === "K"){
         var newImg = document.createElement("img");
-    newImg.src =  'img/key.jpg';
+    newImg.src =  'img/key.png';
 document.getElementById(tempLoc).appendChild(newImg);
         
       }
