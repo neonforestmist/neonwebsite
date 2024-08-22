@@ -26,11 +26,10 @@ body, html {
         float:right;
     }
     .board{
-        background-color:gray;
         width:500px;
         height:500px;
-      margin-right:50px;
-			float:left;
+        margin-right:50px;
+        float:left;
     }
  .newsFeedBox{
         margin-left:80%;
@@ -54,6 +53,8 @@ body, html {
         width:48px;
         height:48px;
         float:left;
+        background-image: url('img/background.png');
+        background-size: cover;
     }
 .news{
     height:500px;
@@ -75,42 +76,42 @@ img{
 .panel{
 	margin-left:10%;
 	margin-top:1%;
-  width:900px;
+    width:900px;
 	height:600px;
-  float:left;
+    float:left;
 }
 
 .clear{
-  float: none;
-  clear:both;
+    float: none;
+    clear:both;
 }
 .inventoryDiv{
-  background: -webkit-linear-gradient(top, #FFFFFF, #5AA1EB);
-  background: -moz-linear-gradient(top, #FFFFFF, #5AA1EB);
-  background: -ms-linear-gradient(top, #FFFFFF, #5AA1EB);
-  background: -o-linear-gradient(top, #FFFFFF, #5AA1EB);
-  width:500px;
-  height:100px;
-  margin-top:530px;
-  border-radius:25px;
+    background: -webkit-linear-gradient(top, #FFFFFF, #5AA1EB);
+    background: -moz-linear-gradient(top, #FFFFFF, #5AA1EB);
+    background: -ms-linear-gradient(top, #FFFFFF, #5AA1EB);
+    background: -o-linear-gradient(top, #FFFFFF, #5AA1EB);
+    width:500px;
+    height:100px;
+    margin-top:530px;
+    border-radius:25px;
 }
 
 .iGrid{
         position: relative;
         width:100px;
         height:50px;
-  top:10px;
-  left:3%;
+    top:10px;
+    left:3%;
         float:left;
     }
 .inventoryText{
-  color:blue;
-  width:150px;
-  height:20px;
-  margin-left:180px;
-  padding-top:5px;
-  text-align:center;
-  font-family:Comic Sans MS;
+    color:blue;
+    width:150px;
+    height:20px;
+    margin-left:180px;
+    padding-top:5px;
+    text-align:center;
+    font-family:Comic Sans MS;
   
 }
 #g1, #g2, #g3{
