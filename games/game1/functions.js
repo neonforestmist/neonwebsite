@@ -5,11 +5,14 @@
 
 
 //each level will be a string of 100 characters, in an array. 
-var level = "WWPTWWWWWWWKPWPPtPPWWWPWEPWWTWCWKTPPPCWCPSPKttTPWPPWWWPPPPWPPCPWWWWWWPPKPPPTPPPPCWWPWWWWWWWOPPPPPPKW";
-//the list of system messages to display
-//test level
-//WWWWWWWWWWWPPPPPPPPWWSPPPPPPPWWPPPPPPPPWWWWKKPPPPWWPPPPPPPPWWPPPPPPPPWWCCPPPPPPWWPPPEPPPPWWWWWWWWWWW
-//OOWWWWWWWWWPPPPPPPCWWWPPEPPPWWOPKPPCPPWWPSPKPPPCCCPPPPPPWWWPPCPWWWWWPPPKPPPKPPPPPWWPWPPWWPWWWWWWWWW
+var levels = [
+  "WWPTWWWWWWWKPWPPtPPWWWPWEPWWTWCWKTPPPCWCPSPKttTPWPPWWWPPPPWPPCPWWWWWWPPKPPPTPPPPCWWPWWWWWWWOPPPPPPKW", // Level 1
+  "WWWWWWWWWWWPPPPPPPPWWSPPPPPPPWWPPPPPPPPWWWWKKPPPPWWPPPPPPPPWWPPPPPPPPWWCCPPPPPPWWPPPEPPPPWWWWWWWWWWW", // Level 2
+  "OOWWWWWWWWWPPPPPPPCWWWPPEPPPWWOPKPPCPPWWPSPKPPPCCCPPPPPPWWWPPCPWWWWWPPPKPPPKPPPPPWWPWPPWWPWWWWWWWWWW", // Level 3
+  "WWPTWWWWWPWKPWPPtPPWWWPWEPWWTWCWKTPPPCWCPSPKttTPWPPWWWPPPPWPPCPWWWWWWPPKPPPTPPPPCWWPWWWWWWWOPPPPPPKW", // Level 4
+  "WWWWWWWWWPWPPPPPPPPWWSPPPPPPPWWPPPPPPPPWWWWKKPPPPWWPPPPPPPPWWPPPPPPPPWWCCPPPPPPWWPPPEPPPPWWWWWWWWWWW", // Level 5
+  "OOWWWWWWWPWPPPPPPPCWWWPPEPPPWWOPKPPCPPWWPSPKPPPCCCPPPPPPWWWPPCPWWWWWPPPKPPPKPPPPPWWPWPPWWPWWWWWWWWWW"  // Level 6
+];
 
 //displaying the right messages when something happens. 
 var messages = ["Opened a chest, got some treasure. ",  //0
@@ -19,7 +22,8 @@ var messages = ["Opened a chest, got some treasure. ",  //0
                 "You have not found all treasure yet.",//4
                 "You have nothing to light it with.",//5
                 "BOOOM", //6
-                "You found a torch."]; //7
+                "You found a torch.", //7
+                "You have reached the exit!"]; //8
 
 
 //attributes/flags here. 
@@ -35,11 +39,12 @@ var chestsOpen; // chests open should equal num keys, right now, given there sho
 var invCount; // iterator variable for the inventory. 
 var inventoryList = [];
 var remaining; // how many keys/chests remain. 
+var levelNumber = 1; // current level number
 
 
 
 //making it 10x10.
-level = level.split("");
+var level = levels[levelNumber - 1].split("");
 var newArr = [];
 while(level.length){
   newArr.push(level.splice(0,10));
@@ -96,20 +101,48 @@ function setBoard(sch){
   controlsDiv.setAttribute("class", "controls");
   panel.appendChild(controlsDiv);
 
-  var upButton = createButton("▲", "up");
-  var downButton = createButton("▼", "down");
-  var leftButton = createButton("◀", "left");
-  var rightButton = createButton("▶", "right");
+  var upButton = createButton("img/up.png", "up");
+  var downButton = createButton("img/down.png", "down");
+  var leftButton = createButton("img/left.png", "left");
+  var rightButton = createButton("img/right.png", "right");
 
   controlsDiv.appendChild(upButton);
   controlsDiv.appendChild(downButton);
   controlsDiv.appendChild(leftButton);
   controlsDiv.appendChild(rightButton);
+
+  // Create level indicator
+  var levelIndicator = document.createElement("div");
+  levelIndicator.setAttribute("class", "level-indicator");
+  levelIndicator.innerHTML = "Level: " + levelNumber;
+  panel.appendChild(levelIndicator);
+
+  // Create music settings
+  var musicSettings = document.createElement("div");
+  musicSettings.setAttribute("class", "music-settings");
+  var musicLabel = document.createElement("label");
+  musicLabel.innerHTML = "Music: ";
+  var musicCheckbox = document.createElement("input");
+  musicCheckbox.setAttribute("type", "checkbox");
+  var audio = new Audio('music/bg.wav');
+  audio.loop = true;
+  musicCheckbox.addEventListener("change", function() {
+    if (musicCheckbox.checked) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  });
+  musicSettings.appendChild(musicLabel);
+  musicSettings.appendChild(musicCheckbox);
+  panel.appendChild(musicSettings);
 }
 
-function createButton(text, direction) {
+function createButton(imgSrc, direction) {
   var button = document.createElement("button");
-  button.innerHTML = text;
+  var img = document.createElement("img");
+  img.src = imgSrc;
+  button.appendChild(img);
   button.setAttribute("class", "control-button");
   button.addEventListener("click", function() {
     handleMobileControl(direction);
@@ -364,6 +397,22 @@ function checkKey(e) {
                update(messages[5]);
            }
        }
+       else if(newArr[begX-1][begY] === "E"){
+           update(messages[8]);
+           levelNumber++;
+           if (levelNumber <= levels.length) {
+             level = levels[levelNumber - 1].split("");
+             newArr = [];
+             while(level.length){
+               newArr.push(level.splice(0,10));
+             }
+             document.body.removeChild(panel); // Remove the current board
+             setBoard(newArr);
+           } else {
+             console.log("No more levels available.");
+           }
+           console.log("Level: " + levelNumber);
+       }
      }
        //console.log("X: " + begX + " y: " + begY);
     }
@@ -444,6 +493,22 @@ function checkKey(e) {
            else if(curKeys === 0){
                update(messages[1]);
            }
+       }
+       else if(newArr[begX+1][begY] === "E"){
+           update(messages[8]);
+           levelNumber++;
+           if (levelNumber <= levels.length) {
+             level = levels[levelNumber - 1].split("");
+             newArr = [];
+             while(level.length){
+               newArr.push(level.splice(0,10));
+             }
+             document.body.removeChild(panel); // Remove the current board
+             setBoard(newArr);
+           } else {
+             console.log("No more levels available.");
+           }
+           console.log("Level: " + levelNumber);
        }
        
        
@@ -533,6 +598,22 @@ function checkKey(e) {
            }
            
        }
+       else if(newArr[begX][begY-1] === "E"){
+           update(messages[8]);
+           levelNumber++;
+           if (levelNumber <= levels.length) {
+             level = levels[levelNumber - 1].split("");
+             newArr = [];
+             while(level.length){
+               newArr.push(level.splice(0,10));
+             }
+             document.body.removeChild(panel); // Remove the current board
+             setBoard(newArr);
+           } else {
+             console.log("No more levels available.");
+           }
+           console.log("Level: " + levelNumber);
+       }
           //console.log("X: " + begX + " y: " + begY);
        
        
@@ -620,6 +701,22 @@ function checkKey(e) {
            else if(curKeys === 0){
                update(messages[1]);
            }
+       }
+       else if(newArr[begX][begY+1] === "E"){
+           update(messages[8]);
+           levelNumber++;
+           if (levelNumber <= levels.length) {
+             level = levels[levelNumber - 1].split("");
+             newArr = [];
+             while(level.length){
+               newArr.push(level.splice(0,10));
+             }
+             document.body.removeChild(panel); // Remove the current board
+             setBoard(newArr);
+           } else {
+             console.log("No more levels available.");
+           }
+           console.log("Level: " + levelNumber);
        }
           //console.log("X: " + begX + " y: " + begY);
        
