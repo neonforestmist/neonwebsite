@@ -353,6 +353,7 @@
     <div class="rain back-row"></div>
     <div id="warning-box" class="box danger">
         ⚠️ The website is 9% complete, most things are unfinished. ⚠️
+        Last Updated: <span id="last-updated">Fetching...</span>
         <span class="close-btn" onclick="closeWarning()">✕</span>
     </div>
     <h1>Hi! This is a test website.</h1>
@@ -371,6 +372,31 @@
 
     <script src="main.js"></script>
     <script>
+        // update last updated timer:
+        async function fetchLastUpdated() {
+            try {
+                const response = await fetch('https://api.github.com/repos/neonforestmist/neonwebsite/commits');
+                const data = await response.json();
+                const lastCommitDate = new Date(data[0].commit.committer.date);
+
+                const now = new Date();
+                const timeDiff = now - lastCommitDate;
+
+                const daysAgo = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                const hoursAgo = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+                let timeAgoText = '';
+                if (daysAgo > 0) {
+                    timeAgoText = `${daysAgo} days `;
+                }
+                timeAgoText += `${hoursAgo} hours ago`;
+
+                document.getElementById('last-updated').innerText = timeAgoText;
+            } catch (error) {
+                document.getElementById('last-updated').innerText = 'Unable to fetch the update date';
+            }
+        }
+        fetchLastUpdated();
         // Rain Animation JavaScript
         let numberOfDrops = 100;
         let drops = "";
