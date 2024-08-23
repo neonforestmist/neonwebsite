@@ -124,7 +124,7 @@ function setBoard(sch){
   musicLabel.innerHTML = "Music: ";
   var musicCheckbox = document.createElement("input");
   musicCheckbox.setAttribute("type", "checkbox");
-  var audio = new Audio('music/bg.wav');
+  var audio = new Audio('music/bg.mp3');
   audio.loop = true;
   musicCheckbox.addEventListener("change", function() {
     if (musicCheckbox.checked) {
