@@ -37,9 +37,9 @@ var curKeys;// how many keys you currently have.
 var curTorches;//how many torches you currently have
 var chestsOpen; // chests open should equal num keys, right now, given there should be an equal number of chests vs keys. 
 var invCount; // iterator variable for the inventory. 
+var levelNumber = 1; // current level number
 var inventoryList = [];
 var remaining; // how many keys/chests remain. 
-var levelNumber = 1; // current level number
 
 
 
@@ -97,6 +97,7 @@ function setBoard(sch){
   setInventory();
   
   // Create mobile control buttons
+
   var controlsDiv = document.createElement("div");
   controlsDiv.setAttribute("class", "controls");
   panel.appendChild(controlsDiv);
@@ -200,7 +201,7 @@ function addToGrid(x,y,id){
     newGrid.setAttribute("class", "grid");
     newGrid.setAttribute("id", curId);
     var newImg = document.createElement("img");
-    newImg.src =  'img/char1.jpg';
+    newImg.src =  'img/char1.png';
     newGrid.appendChild(newImg);
     board.appendChild(newGrid);
   }
@@ -267,7 +268,7 @@ function addToGrid(x,y,id){
 checkLevel(newArr);
 setBoard(newArr);//lert(inventoryList.length); 
 
-var characterPic = 'img/char1.jpg';
+var characterPic = 'img/char1.png';
 document.onkeydown = checkKey;
 //function to validate the level string, for debugging and custom level purposes. 
 /*-****************************************************************************\
