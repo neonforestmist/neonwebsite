@@ -323,7 +323,7 @@
         </div>
         <div class="game-placeholder">
             Placeholder Game 2
-            <button class="play-button">Play</button>
+            <button class="play-button" id="play-game2">Play</button>
         </div>
         <div class="game-placeholder">
             Placeholder Game 3
@@ -334,7 +334,12 @@
             <button class="play-button">Play</button>
         </div>
     </div>
-
+    <div class="arrow-key-container">
+        <div class="arrow-key up" data-key="38"></div><br>
+        <div class="arrow-key left" data-key="37"></div>
+        <div class="arrow-key down" data-key="40"></div>
+        <div class="arrow-key right" data-key="39"></div>
+      </div>
 
     <!-- Background Music -->
     <audio id="background-music" autoplay loop>
@@ -372,7 +377,6 @@
             document.body.classList.toggle('single-toggle');
             this.classList.toggle('active');
         };
-
         // Audio control
         document.addEventListener('click', function () {
             let audio = document.getElementById('background-music');
@@ -384,9 +388,12 @@
         });
     </script>
         <script>
-            // Redirect for Placeholder Game 1
+            // Redirect for Placeholder Games
             document.getElementById('play-game1').addEventListener('click', function() {
-                window.location.href = 'game1/index.html';
+                window.location.href = 'game1';
+            });
+            document.getElementById('play-game2').addEventListener('click', function() {
+                window.location.href = 'game2';
             });
         </script>
     
