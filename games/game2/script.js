@@ -32,11 +32,11 @@ function turnOffLock() {
 		document.getElementById("iphone").style.backgroundColor = "#000"; 
 		document.getElementById("inner").style.cursor = "pointer"; 
 	} else {
-		window.location.href = "/index.html";	
+		window.location.href = "index.html";	
 	}
 
 	document.getElementById("iphone").addEventListener("click", () => {
-		window.location.href = "/index.html";			
+		window.location.href = "index.html";			
 	});
 }
 
@@ -61,7 +61,7 @@ function addFilledDot() {
 
 	if (passcodeCount == 6) {
 		setTimeout(function(){
-			window.location.href = "/home.html";	
+			window.location.href = "home.html";	
 
 			var all = document.getElementsByClassName("dot");
 			for (var i = 0; i < all.length; i++) {
