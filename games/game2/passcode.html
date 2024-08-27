@@ -25,13 +25,14 @@
 				<div class="dash left bottom"></div>
 			</div>
 
-			<div class="iphone passcode" id="iphone">
+			<div class="iphone" id="iphone">
 				<div class="dash top"></div>
 
-				<div class="inner passcode" id="inner">
+				<div class="inner" id="inner">
 					<div class="top">
-						<div class="left"></div>
-
+						<div class="left">
+							<!-- <p>Spectrum</p> -->
+						</div>
 						<div class="center" id="center">	
 							<div class="mic" id="mic">
 							</div>
@@ -41,15 +42,19 @@
 						</div>
 
 						<div class="right">
-							<ion-icon name="cellular" class="cellular"></ion-icon>
+							<div class="container">
+								<ion-icon name="cellular" class="cellular"></ion-icon>
 
-							<img src="Images/Icons/wifi.png" class="wifi">
+								<img src="Images/Icons/wifi.png" class="wifi">
 
-							<img src="Images/Icons/battery.png" class="battery">
+								<img src="Images/Icons/battery.png" class="battery">
+							</div>
+
+							<!-- <div class="line"></div> -->
 						</div>
 					</div>
 
-					<div class="content">
+					<div class="content" id="content">
 						<img src="Images/Icons/lock.png" class="lock">
 
 						<div class="passcode">
@@ -130,19 +135,20 @@
 							</a>
 						</div>
 					</div>
-
-					<div class="dash bottom"></div>
 				</div>
+
+				<div class="dash bottom"></div>
 			</div>
 			
 			<div class="side right">
 				<div class="dash right top"></div>
 
-				<div class="side power" onclick="turnOffLock()"></div>
+				<div class="side power" onclick="turnOff()"></div>
 
 				<div class="dash right bottom"></div>
 			</div>
 		</div>
+
 	<script src="forcefullscreen.js"></script>
     <script src="script.js"></script>
 		<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -152,8 +158,12 @@
 
 <style>
 
+.iphone .dash.bottom {
+    top: 6px;
+    left: 60px;
+}
 
-.iphone.passcode .inner.passcode {
+.iphone .inner {
 	background-color: #191b2c;
 	border-radius: 30px;
 }
@@ -241,20 +251,7 @@
 	color: #696a75;
 }
 
-
-.iphone.passcode .dash.bottom {
-	top: 64px;
-}
-
-
-
 </style>
-
-
-
-
-
-
 
 <script>
 
