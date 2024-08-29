@@ -77,7 +77,6 @@ const createStar = position => {
         color = selectRandom(config.colors);
   
   star.className = "star fa-solid fa-sparkle";
-  
   star.style.left = px(position.x);
   star.style.top = px(position.y);
   star.style.fontSize = selectRandom(config.sizes);
