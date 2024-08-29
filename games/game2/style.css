@@ -16,7 +16,7 @@
 }
 
 body, html {
-	touch-action: none; /* Prevents accidental zoom or pan */
+	touch-action: none; /* Prevents accidental zoom or pan on iphone */
 	height: 100%;
 	display: flex;
 	justify-content: center;
