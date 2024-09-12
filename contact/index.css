@@ -89,13 +89,13 @@ span
     font-size: 16px;
     font-family: 'Ubuntu Mono', monospace;
     font-weight: normal;
-    color: #6888AA;
+    color: #0000;
     background-color: #000;
     border-radius: 4px;
 }
 span:hover
 {
-    color: #000000ff;
+    color: #0000;
     cursor: pointer;
 }
 .loading
